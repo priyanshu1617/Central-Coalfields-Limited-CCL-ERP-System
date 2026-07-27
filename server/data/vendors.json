@@ -1,0 +1,36 @@
+[
+  {
+    "_id": "63a142ed57f720a4679ec113",
+    "companyName": "Coal India Spares Ltd",
+    "contactPerson": "Amit Sharma",
+    "gstNumber": "20AAACC1234F1Z1",
+    "phone": "+91 9431100223",
+    "address": "Industrial Area, Kokar, Ranchi, Jharkhand",
+    "products": [
+      "Spare Parts",
+      "Tools"
+    ]
+  },
+  {
+    "_id": "32571d0c8f0551d2a8bb958d",
+    "companyName": "Bharat Explosives Ltd",
+    "contactPerson": "Rajesh Singh",
+    "gstNumber": "20BBACD4567G2Z2",
+    "phone": "+91 6512540982",
+    "address": "Gomia Area, Bokaro, Jharkhand",
+    "products": [
+      "Explosives"
+    ]
+  },
+  {
+    "_id": "750656bf5acc19e0f0abe3b4",
+    "companyName": "Safety Equipments India",
+    "contactPerson": "Megha Gupta",
+    "gstNumber": "20CCADE8912H3Z3",
+    "phone": "+91 8002934112",
+    "address": "Lalpur, Ranchi, Jharkhand",
+    "products": [
+      "PPE Kits"
+    ]
+  }
+]

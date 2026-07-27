@@ -1,0 +1,223 @@
+[
+  {
+    "_id": "2536601a4a4fe6e65bae5d46",
+    "name": "Aditya Vardhan",
+    "email": "admin@ccl.gov.in",
+    "password": "$2a$10$KLRaDbf1nC2DH2qVfV8n..ugXDOBUOzpgQ.USRf1uE0BAY.J82tnW",
+    "role": "Admin",
+    "employeeId": "CCL001",
+    "department": "Administration",
+    "designation": "General Manager",
+    "status": "Active",
+    "baseSalary": 120000,
+    "timeline": [
+      {
+        "date": "2024-01-10T00:00:00.000Z",
+        "event": "Promotion",
+        "details": "Promoted to General Manager"
+      }
+    ]
+  },
+  {
+    "_id": "e18d60b540fe5128f76196fe",
+    "name": "Priyanka Sharma",
+    "email": "hr@ccl.gov.in",
+    "password": "$2a$10$KLRaDbf1nC2DH2qVfV8n..ugXDOBUOzpgQ.USRf1uE0BAY.J82tnW",
+    "role": "HR",
+    "employeeId": "CCL002",
+    "department": "Human Resources",
+    "designation": "HR Manager",
+    "status": "Active",
+    "baseSalary": 75000,
+    "timeline": [
+      {
+        "date": "2024-03-15T00:00:00.000Z",
+        "event": "Joining",
+        "details": "Joined CCL Ranchi HQ"
+      }
+    ]
+  },
+  {
+    "_id": "5ccb1105425ef0cc8d11acfa",
+    "name": "Rajiv Kumar",
+    "email": "manager@ccl.gov.in",
+    "password": "$2a$10$KLRaDbf1nC2DH2qVfV8n..ugXDOBUOzpgQ.USRf1uE0BAY.J82tnW",
+    "role": "Mine Manager",
+    "employeeId": "CCL003",
+    "department": "Mining Operations",
+    "designation": "Senior Mine Manager",
+    "status": "Active",
+    "baseSalary": 95000,
+    "timeline": [
+      {
+        "date": "2022-05-20T00:00:00.000Z",
+        "event": "Joining",
+        "details": "Joined as Assistant Mine Manager"
+      },
+      {
+        "date": "2024-08-01T00:00:00.000Z",
+        "event": "Promotion",
+        "details": "Promoted to Senior Mine Manager"
+      }
+    ],
+    "emergencyContact": {
+      "name": "Sunita Devi",
+      "relation": "Spouse",
+      "phone": "+91 9876543210"
+    }
+  },
+  {
+    "_id": "c490eac22afd18f5f78efff1",
+    "name": "Sanjeev Nayan",
+    "email": "safety@ccl.gov.in",
+    "password": "$2a$10$KLRaDbf1nC2DH2qVfV8n..ugXDOBUOzpgQ.USRf1uE0BAY.J82tnW",
+    "role": "Safety Officer",
+    "employeeId": "CCL004",
+    "department": "Safety & Security",
+    "designation": "Chief Safety Inspector",
+    "status": "Active",
+    "baseSalary": 80000,
+    "timeline": [
+      {
+        "date": "2023-06-12T00:00:00.000Z",
+        "event": "Audit Commendation",
+        "details": "Awarded for zero-incident quarter"
+      }
+    ]
+  },
+  {
+    "_id": "ff1e695a43dbe22c655bf54a",
+    "name": "Nirmala Gopalan",
+    "email": "finance@ccl.gov.in",
+    "password": "$2a$10$KLRaDbf1nC2DH2qVfV8n..ugXDOBUOzpgQ.USRf1uE0BAY.J82tnW",
+    "role": "Finance Manager",
+    "employeeId": "CCL005",
+    "department": "Finance & Accounts",
+    "designation": "Chief Finance Officer",
+    "status": "Active",
+    "baseSalary": 110000,
+    "timeline": [
+      {
+        "date": "2021-11-01T00:00:00.000Z",
+        "event": "Joining",
+        "details": "Joined from CIL HQ"
+      }
+    ]
+  },
+  {
+    "_id": "07c61b8f9d691a3c4e9e8c18",
+    "name": "Rakesh Prasad",
+    "email": "production@ccl.gov.in",
+    "password": "$2a$10$KLRaDbf1nC2DH2qVfV8n..ugXDOBUOzpgQ.USRf1uE0BAY.J82tnW",
+    "role": "Production Manager",
+    "employeeId": "CCL006",
+    "department": "Production & Planning",
+    "designation": "Production Planner",
+    "status": "Active",
+    "baseSalary": 88000,
+    "timeline": [
+      {
+        "date": "2023-02-18T00:00:00.000Z",
+        "event": "Joining",
+        "details": "Joined as Planner"
+      }
+    ]
+  },
+  {
+    "_id": "140ee1e51b6fb0d5b670c9cd",
+    "name": "Sanjay Rawat",
+    "email": "inventory@ccl.gov.in",
+    "password": "$2a$10$KLRaDbf1nC2DH2qVfV8n..ugXDOBUOzpgQ.USRf1uE0BAY.J82tnW",
+    "role": "Inventory Manager",
+    "employeeId": "CCL007",
+    "department": "Materials Management",
+    "designation": "Stores Officer",
+    "status": "Active",
+    "baseSalary": 72000,
+    "timeline": [
+      {
+        "date": "2024-05-10T00:00:00.000Z",
+        "event": "System Migration",
+        "details": "Oversaw Digital Store Cataloging"
+      }
+    ]
+  },
+  {
+    "_id": "d8f11432cc49fa16d3c2c13b",
+    "name": "Vikash Kumar",
+    "email": "vikash.kumar@ccl.gov.in",
+    "password": "$2a$10$KLRaDbf1nC2DH2qVfV8n..ugXDOBUOzpgQ.USRf1uE0BAY.J82tnW",
+    "role": "Employee",
+    "employeeId": "CCL008",
+    "department": "Mining Operations",
+    "designation": "Mining Sirdar",
+    "status": "Active",
+    "baseSalary": 45000,
+    "timeline": [
+      {
+        "date": "2025-01-05T00:00:00.000Z",
+        "event": "Joining",
+        "details": "Joined North Karanpura Team"
+      }
+    ]
+  },
+  {
+    "_id": "f63022f12ba722bf16e75a96",
+    "name": "Sunil Verma",
+    "email": "sunil.verma@ccl.gov.in",
+    "password": "$2a$10$KLRaDbf1nC2DH2qVfV8n..ugXDOBUOzpgQ.USRf1uE0BAY.J82tnW",
+    "role": "Employee",
+    "employeeId": "CCL009",
+    "department": "Mining Operations",
+    "designation": "Mining Sirdar",
+    "status": "Active",
+    "baseSalary": 42000,
+    "timeline": [
+      {
+        "date": "2025-05-18T00:00:00.000Z",
+        "event": "Joining",
+        "details": "Joined North Karanpura Team as Sirdar"
+      }
+    ]
+  },
+  {
+    "_id": "3a60c292a2a8c6410144316f",
+    "name": "Sunny Kumar",
+    "email": "sunny@ccl.gov.in",
+    "password": "$2a$10$kJS7DmzXUPV0YL4OsmZiwe.LS9lpiNx553PsInrHkaBIqjD.Q17L.",
+    "role": "Employee",
+    "employeeId": "ccl010",
+    "department": "Mining Operations",
+    "designation": "Mining Sirdar",
+    "baseSalary": 50000,
+    "timeline": [
+      {
+        "date": "2026-07-27T15:03:20.174Z",
+        "event": "Joined",
+        "details": "Added to CCL ERP system"
+      }
+    ],
+    "createdAt": "2026-07-27T15:03:20.177Z",
+    "updatedAt": "2026-07-27T15:03:20.177Z"
+  },
+  {
+    "_id": "095b72fd8c0274b712b6a7cd",
+    "name": "Priyanshu Chandra",
+    "email": "priyanshu@ccl.gov.in",
+    "password": "$2a$10$p8DOjWj2UAtE/11zNLHUcOXzzu.XAizw4eRrtt2VDId3NpLm8HkYa",
+    "role": "HR",
+    "employeeId": "ccl011",
+    "department": "Human Resources",
+    "designation": "Human Resource",
+    "baseSalary": 11200000,
+    "timeline": [
+      {
+        "date": "2026-07-27T15:19:29.620Z",
+        "event": "Joined",
+        "details": "Added to CCL ERP system"
+      }
+    ],
+    "createdAt": "2026-07-27T15:19:29.623Z",
+    "updatedAt": "2026-07-27T15:19:29.623Z"
+  }
+]

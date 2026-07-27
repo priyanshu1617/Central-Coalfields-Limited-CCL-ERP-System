@@ -1,0 +1,52 @@
+[
+  {
+    "_id": "cf8951bdc2248ea725ccb335",
+    "name": "North Karanpura",
+    "area": "Karanpura Area",
+    "status": "Operational",
+    "targetOutput": 270000,
+    "dailyOutput": 8560,
+    "supervisor": "5ccb1105425ef0cc8d11acfa",
+    "safetyStatus": "Safe"
+  },
+  {
+    "_id": "2523953159fd65bf3634c90d",
+    "name": "South Karanpura",
+    "area": "Karanpura Area",
+    "status": "Operational",
+    "targetOutput": 240000,
+    "dailyOutput": 7420,
+    "supervisor": "d8f11432cc49fa16d3c2c13b",
+    "safetyStatus": "Safe"
+  },
+  {
+    "_id": "64ced8043ed06a97c5296ba5",
+    "name": "West Bokaro",
+    "area": "Bokaro Area",
+    "status": "Operational",
+    "targetOutput": 180000,
+    "dailyOutput": 5230,
+    "supervisor": "f63022f12ba722bf16e75a96",
+    "safetyStatus": "Warning"
+  },
+  {
+    "_id": "c54f63a70eb2b4235355e4d1",
+    "name": "East Bokaro",
+    "area": "Bokaro Area",
+    "status": "Operational",
+    "targetOutput": 120000,
+    "dailyOutput": 3520,
+    "supervisor": "5ccb1105425ef0cc8d11acfa",
+    "safetyStatus": "Warning"
+  },
+  {
+    "_id": "ebe90564c35b94dc2f10a5a4",
+    "name": "Ramgarh",
+    "area": "Ramgarh Area",
+    "status": "Operational",
+    "targetOutput": 90000,
+    "dailyOutput": 2810,
+    "supervisor": "d8f11432cc49fa16d3c2c13b",
+    "safetyStatus": "Safe"
+  }
+]

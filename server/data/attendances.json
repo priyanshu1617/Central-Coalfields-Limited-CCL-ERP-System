@@ -1,0 +1,24 @@
+[
+  {
+    "_id": "5fab4899b8f74d31a8f3f5f2",
+    "employee": "5ccb1105425ef0cc8d11acfa",
+    "date": "2025-05-19T00:00:00.000Z",
+    "checkIn": "08:45 AM",
+    "checkOut": "05:30 PM",
+    "shift": "General",
+    "workingHours": 8.75,
+    "overtime": 0.75,
+    "status": "Present"
+  },
+  {
+    "_id": "c0117e0005bd13790aa0cb3b",
+    "employee": "d8f11432cc49fa16d3c2c13b",
+    "date": "2025-05-19T00:00:00.000Z",
+    "checkIn": "07:55 AM",
+    "checkOut": "04:15 PM",
+    "shift": "Morning",
+    "workingHours": 8.33,
+    "overtime": 0.33,
+    "status": "Present"
+  }
+]

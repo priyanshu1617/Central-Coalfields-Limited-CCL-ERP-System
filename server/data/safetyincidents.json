@@ -1,0 +1,22 @@
+[
+  {
+    "_id": "ba931111db2fabfcc5ce9693",
+    "title": "Low stock alert: Explosive items in North Karanpura",
+    "description": "Explosive ANFO supplies fell below the buffer threshold of 150kg. Operational safety guidelines mandate immediate procurement.",
+    "date": "2025-05-19T10:20:00.000Z",
+    "severity": "Medium",
+    "status": "Reported",
+    "mine": "cf8951bdc2248ea725ccb335",
+    "reportedBy": "c490eac22afd18f5f78efff1"
+  },
+  {
+    "_id": "289983137545b346f5a427b7",
+    "title": "Vehicle HR55K 9921 is due for maintenance",
+    "description": "Ashok Leyland dumper has exceeded running hours threshold without a full engine oil and safety audit check.",
+    "date": "2025-05-19T09:45:00.000Z",
+    "severity": "Low",
+    "status": "Under Investigation",
+    "mine": "2523953159fd65bf3634c90d",
+    "reportedBy": "c490eac22afd18f5f78efff1"
+  }
+]

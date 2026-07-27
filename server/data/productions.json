@@ -1,0 +1,762 @@
+[
+  {
+    "_id": "d9f46b33adfe85b1a3c6c1e9",
+    "mine": "cf8951bdc2248ea725ccb335",
+    "date": "2025-05-01T12:00:00.000Z",
+    "quantity": 8072,
+    "grade": "G7",
+    "supervisor": "5ccb1105425ef0cc8d11acfa"
+  },
+  {
+    "_id": "8bbebc8cf64ea390d66975ef",
+    "mine": "2523953159fd65bf3634c90d",
+    "date": "2025-05-01T12:00:00.000Z",
+    "quantity": 7194,
+    "grade": "G9",
+    "supervisor": "d8f11432cc49fa16d3c2c13b"
+  },
+  {
+    "_id": "ffd78f8665a58a8d5733d149",
+    "mine": "64ced8043ed06a97c5296ba5",
+    "date": "2025-05-01T12:00:00.000Z",
+    "quantity": 5135,
+    "grade": "G9",
+    "supervisor": "f63022f12ba722bf16e75a96"
+  },
+  {
+    "_id": "1a097c66db9edf8c573bec52",
+    "mine": "c54f63a70eb2b4235355e4d1",
+    "date": "2025-05-01T12:00:00.000Z",
+    "quantity": 3245,
+    "grade": "G4",
+    "supervisor": "5ccb1105425ef0cc8d11acfa"
+  },
+  {
+    "_id": "7d74eefeae1058ee34a3f943",
+    "mine": "ebe90564c35b94dc2f10a5a4",
+    "date": "2025-05-01T12:00:00.000Z",
+    "quantity": 3112,
+    "grade": "G4",
+    "supervisor": "d8f11432cc49fa16d3c2c13b"
+  },
+  {
+    "_id": "0f8327e1f05e24c856611bcf",
+    "mine": "cf8951bdc2248ea725ccb335",
+    "date": "2025-05-02T12:00:00.000Z",
+    "quantity": 8477,
+    "grade": "G5",
+    "supervisor": "5ccb1105425ef0cc8d11acfa"
+  },
+  {
+    "_id": "438bf37c498fd67c3b15d9c3",
+    "mine": "2523953159fd65bf3634c90d",
+    "date": "2025-05-02T12:00:00.000Z",
+    "quantity": 8053,
+    "grade": "G4",
+    "supervisor": "d8f11432cc49fa16d3c2c13b"
+  },
+  {
+    "_id": "326fd1186c8abc151336efff",
+    "mine": "64ced8043ed06a97c5296ba5",
+    "date": "2025-05-02T12:00:00.000Z",
+    "quantity": 4778,
+    "grade": "G5",
+    "supervisor": "f63022f12ba722bf16e75a96"
+  },
+  {
+    "_id": "f73674040bbbaf173bf48a36",
+    "mine": "c54f63a70eb2b4235355e4d1",
+    "date": "2025-05-02T12:00:00.000Z",
+    "quantity": 3630,
+    "grade": "G7",
+    "supervisor": "5ccb1105425ef0cc8d11acfa"
+  },
+  {
+    "_id": "c4474bd1f4d2fd14bcfaa28b",
+    "mine": "ebe90564c35b94dc2f10a5a4",
+    "date": "2025-05-02T12:00:00.000Z",
+    "quantity": 3292,
+    "grade": "G4",
+    "supervisor": "d8f11432cc49fa16d3c2c13b"
+  },
+  {
+    "_id": "4dd9fa06ed3a79e9b16cf0fe",
+    "mine": "cf8951bdc2248ea725ccb335",
+    "date": "2025-05-03T12:00:00.000Z",
+    "quantity": 8117,
+    "grade": "G5",
+    "supervisor": "5ccb1105425ef0cc8d11acfa"
+  },
+  {
+    "_id": "cdc1b80f2527e5f7013481a4",
+    "mine": "2523953159fd65bf3634c90d",
+    "date": "2025-05-03T12:00:00.000Z",
+    "quantity": 7222,
+    "grade": "G9",
+    "supervisor": "d8f11432cc49fa16d3c2c13b"
+  },
+  {
+    "_id": "39394437bb173b9d3f306a76",
+    "mine": "64ced8043ed06a97c5296ba5",
+    "date": "2025-05-03T12:00:00.000Z",
+    "quantity": 4869,
+    "grade": "G4",
+    "supervisor": "f63022f12ba722bf16e75a96"
+  },
+  {
+    "_id": "5f64de0ca8d853a7365d0e6a",
+    "mine": "c54f63a70eb2b4235355e4d1",
+    "date": "2025-05-03T12:00:00.000Z",
+    "quantity": 3378,
+    "grade": "G9",
+    "supervisor": "5ccb1105425ef0cc8d11acfa"
+  },
+  {
+    "_id": "bb0861f2928eba6ec48e8ffb",
+    "mine": "ebe90564c35b94dc2f10a5a4",
+    "date": "2025-05-03T12:00:00.000Z",
+    "quantity": 3254,
+    "grade": "G4",
+    "supervisor": "d8f11432cc49fa16d3c2c13b"
+  },
+  {
+    "_id": "d120d667eb67f7f7badc52db",
+    "mine": "cf8951bdc2248ea725ccb335",
+    "date": "2025-05-04T12:00:00.000Z",
+    "quantity": 9370,
+    "grade": "G4",
+    "supervisor": "5ccb1105425ef0cc8d11acfa"
+  },
+  {
+    "_id": "ec298a6e8ec9adaacc5b60d8",
+    "mine": "2523953159fd65bf3634c90d",
+    "date": "2025-05-04T12:00:00.000Z",
+    "quantity": 7205,
+    "grade": "G4",
+    "supervisor": "d8f11432cc49fa16d3c2c13b"
+  },
+  {
+    "_id": "8a6114ae23f213ace6e7c3d8",
+    "mine": "64ced8043ed06a97c5296ba5",
+    "date": "2025-05-04T12:00:00.000Z",
+    "quantity": 4796,
+    "grade": "G5",
+    "supervisor": "f63022f12ba722bf16e75a96"
+  },
+  {
+    "_id": "d0d1d420ac1000ecb6a5d504",
+    "mine": "c54f63a70eb2b4235355e4d1",
+    "date": "2025-05-04T12:00:00.000Z",
+    "quantity": 3676,
+    "grade": "G5",
+    "supervisor": "5ccb1105425ef0cc8d11acfa"
+  },
+  {
+    "_id": "855f8f3a6f2e3894037c1e2f",
+    "mine": "ebe90564c35b94dc2f10a5a4",
+    "date": "2025-05-04T12:00:00.000Z",
+    "quantity": 2922,
+    "grade": "G3",
+    "supervisor": "d8f11432cc49fa16d3c2c13b"
+  },
+  {
+    "_id": "812493c99f97f68bb604b810",
+    "mine": "cf8951bdc2248ea725ccb335",
+    "date": "2025-05-05T12:00:00.000Z",
+    "quantity": 8975,
+    "grade": "G4",
+    "supervisor": "5ccb1105425ef0cc8d11acfa"
+  },
+  {
+    "_id": "20e70e4bd4b8d792457f8425",
+    "mine": "2523953159fd65bf3634c90d",
+    "date": "2025-05-05T12:00:00.000Z",
+    "quantity": 7626,
+    "grade": "G7",
+    "supervisor": "d8f11432cc49fa16d3c2c13b"
+  },
+  {
+    "_id": "300a1f832eb78325d0b64f2d",
+    "mine": "64ced8043ed06a97c5296ba5",
+    "date": "2025-05-05T12:00:00.000Z",
+    "quantity": 4758,
+    "grade": "G3",
+    "supervisor": "f63022f12ba722bf16e75a96"
+  },
+  {
+    "_id": "264fa5ac5da60d006ab240ba",
+    "mine": "c54f63a70eb2b4235355e4d1",
+    "date": "2025-05-05T12:00:00.000Z",
+    "quantity": 3437,
+    "grade": "G7",
+    "supervisor": "5ccb1105425ef0cc8d11acfa"
+  },
+  {
+    "_id": "5f6648b869e89e0097cf8850",
+    "mine": "ebe90564c35b94dc2f10a5a4",
+    "date": "2025-05-05T12:00:00.000Z",
+    "quantity": 2508,
+    "grade": "G3",
+    "supervisor": "d8f11432cc49fa16d3c2c13b"
+  },
+  {
+    "_id": "cec1ca47d8f8aec2b68b612a",
+    "mine": "cf8951bdc2248ea725ccb335",
+    "date": "2025-05-06T12:00:00.000Z",
+    "quantity": 9954,
+    "grade": "G3",
+    "supervisor": "5ccb1105425ef0cc8d11acfa"
+  },
+  {
+    "_id": "b783d832b469234c068c64b2",
+    "mine": "2523953159fd65bf3634c90d",
+    "date": "2025-05-06T12:00:00.000Z",
+    "quantity": 8042,
+    "grade": "G3",
+    "supervisor": "d8f11432cc49fa16d3c2c13b"
+  },
+  {
+    "_id": "824ce89242469d2d4de0362f",
+    "mine": "64ced8043ed06a97c5296ba5",
+    "date": "2025-05-06T12:00:00.000Z",
+    "quantity": 4716,
+    "grade": "G7",
+    "supervisor": "f63022f12ba722bf16e75a96"
+  },
+  {
+    "_id": "ffbdae27a18bb8191ed8d6b3",
+    "mine": "c54f63a70eb2b4235355e4d1",
+    "date": "2025-05-06T12:00:00.000Z",
+    "quantity": 3350,
+    "grade": "G4",
+    "supervisor": "5ccb1105425ef0cc8d11acfa"
+  },
+  {
+    "_id": "b333461c3d7b76a5164a9e81",
+    "mine": "ebe90564c35b94dc2f10a5a4",
+    "date": "2025-05-06T12:00:00.000Z",
+    "quantity": 2800,
+    "grade": "G9",
+    "supervisor": "d8f11432cc49fa16d3c2c13b"
+  },
+  {
+    "_id": "96eafe71314723dc43b5aa0b",
+    "mine": "cf8951bdc2248ea725ccb335",
+    "date": "2025-05-07T12:00:00.000Z",
+    "quantity": 8305,
+    "grade": "G9",
+    "supervisor": "5ccb1105425ef0cc8d11acfa"
+  },
+  {
+    "_id": "8c2c35d25406af5329b4af3f",
+    "mine": "2523953159fd65bf3634c90d",
+    "date": "2025-05-07T12:00:00.000Z",
+    "quantity": 8306,
+    "grade": "G7",
+    "supervisor": "d8f11432cc49fa16d3c2c13b"
+  },
+  {
+    "_id": "5ab07c36e740053b6381c9f6",
+    "mine": "64ced8043ed06a97c5296ba5",
+    "date": "2025-05-07T12:00:00.000Z",
+    "quantity": 5496,
+    "grade": "G5",
+    "supervisor": "f63022f12ba722bf16e75a96"
+  },
+  {
+    "_id": "2c743d8f6f0bbea5ce7647e5",
+    "mine": "c54f63a70eb2b4235355e4d1",
+    "date": "2025-05-07T12:00:00.000Z",
+    "quantity": 3593,
+    "grade": "G5",
+    "supervisor": "5ccb1105425ef0cc8d11acfa"
+  },
+  {
+    "_id": "5032a72a098faa9d415188cf",
+    "mine": "ebe90564c35b94dc2f10a5a4",
+    "date": "2025-05-07T12:00:00.000Z",
+    "quantity": 3143,
+    "grade": "G5",
+    "supervisor": "d8f11432cc49fa16d3c2c13b"
+  },
+  {
+    "_id": "c034326ea687daa3f7d6ba89",
+    "mine": "cf8951bdc2248ea725ccb335",
+    "date": "2025-05-08T12:00:00.000Z",
+    "quantity": 8750,
+    "grade": "G5",
+    "supervisor": "5ccb1105425ef0cc8d11acfa"
+  },
+  {
+    "_id": "cdbb566dab9f7fd49014d772",
+    "mine": "2523953159fd65bf3634c90d",
+    "date": "2025-05-08T12:00:00.000Z",
+    "quantity": 8425,
+    "grade": "G7",
+    "supervisor": "d8f11432cc49fa16d3c2c13b"
+  },
+  {
+    "_id": "3d9867ed6db19ba4103f71f1",
+    "mine": "64ced8043ed06a97c5296ba5",
+    "date": "2025-05-08T12:00:00.000Z",
+    "quantity": 5055,
+    "grade": "G3",
+    "supervisor": "f63022f12ba722bf16e75a96"
+  },
+  {
+    "_id": "5677603f7cda5fd8b0251300",
+    "mine": "c54f63a70eb2b4235355e4d1",
+    "date": "2025-05-08T12:00:00.000Z",
+    "quantity": 3631,
+    "grade": "G3",
+    "supervisor": "5ccb1105425ef0cc8d11acfa"
+  },
+  {
+    "_id": "fa918db440970fb1e7be5f72",
+    "mine": "ebe90564c35b94dc2f10a5a4",
+    "date": "2025-05-08T12:00:00.000Z",
+    "quantity": 2964,
+    "grade": "G5",
+    "supervisor": "d8f11432cc49fa16d3c2c13b"
+  },
+  {
+    "_id": "282a3b676a1bc58576a25f4a",
+    "mine": "cf8951bdc2248ea725ccb335",
+    "date": "2025-05-09T12:00:00.000Z",
+    "quantity": 9391,
+    "grade": "G7",
+    "supervisor": "5ccb1105425ef0cc8d11acfa"
+  },
+  {
+    "_id": "b421456a364bdac004a27c04",
+    "mine": "2523953159fd65bf3634c90d",
+    "date": "2025-05-09T12:00:00.000Z",
+    "quantity": 8410,
+    "grade": "G3",
+    "supervisor": "d8f11432cc49fa16d3c2c13b"
+  },
+  {
+    "_id": "2d469bbed8ef400f1e136827",
+    "mine": "64ced8043ed06a97c5296ba5",
+    "date": "2025-05-09T12:00:00.000Z",
+    "quantity": 5554,
+    "grade": "G5",
+    "supervisor": "f63022f12ba722bf16e75a96"
+  },
+  {
+    "_id": "a50f9cae7691e3664bc62e5b",
+    "mine": "c54f63a70eb2b4235355e4d1",
+    "date": "2025-05-09T12:00:00.000Z",
+    "quantity": 3417,
+    "grade": "G3",
+    "supervisor": "5ccb1105425ef0cc8d11acfa"
+  },
+  {
+    "_id": "1ed6a4b09bc5047443ae3db9",
+    "mine": "ebe90564c35b94dc2f10a5a4",
+    "date": "2025-05-09T12:00:00.000Z",
+    "quantity": 3084,
+    "grade": "G4",
+    "supervisor": "d8f11432cc49fa16d3c2c13b"
+  },
+  {
+    "_id": "dccaa737b5b810262b35d016",
+    "mine": "cf8951bdc2248ea725ccb335",
+    "date": "2025-05-10T12:00:00.000Z",
+    "quantity": 9355,
+    "grade": "G9",
+    "supervisor": "5ccb1105425ef0cc8d11acfa"
+  },
+  {
+    "_id": "064c6df22958291b4939d2e5",
+    "mine": "2523953159fd65bf3634c90d",
+    "date": "2025-05-10T12:00:00.000Z",
+    "quantity": 7319,
+    "grade": "G4",
+    "supervisor": "d8f11432cc49fa16d3c2c13b"
+  },
+  {
+    "_id": "bb307f4ec5621b9dc416c809",
+    "mine": "64ced8043ed06a97c5296ba5",
+    "date": "2025-05-10T12:00:00.000Z",
+    "quantity": 4738,
+    "grade": "G9",
+    "supervisor": "f63022f12ba722bf16e75a96"
+  },
+  {
+    "_id": "fc6ae23c143c0098fe649cf5",
+    "mine": "c54f63a70eb2b4235355e4d1",
+    "date": "2025-05-10T12:00:00.000Z",
+    "quantity": 3686,
+    "grade": "G4",
+    "supervisor": "5ccb1105425ef0cc8d11acfa"
+  },
+  {
+    "_id": "9cc7bf690bea53bf46f7741a",
+    "mine": "ebe90564c35b94dc2f10a5a4",
+    "date": "2025-05-10T12:00:00.000Z",
+    "quantity": 3117,
+    "grade": "G9",
+    "supervisor": "d8f11432cc49fa16d3c2c13b"
+  },
+  {
+    "_id": "a7ac58eeff9a92d2a26aa83f",
+    "mine": "cf8951bdc2248ea725ccb335",
+    "date": "2025-05-11T12:00:00.000Z",
+    "quantity": 9367,
+    "grade": "G5",
+    "supervisor": "5ccb1105425ef0cc8d11acfa"
+  },
+  {
+    "_id": "c39a923a813e50f4302e4a08",
+    "mine": "2523953159fd65bf3634c90d",
+    "date": "2025-05-11T12:00:00.000Z",
+    "quantity": 8040,
+    "grade": "G5",
+    "supervisor": "d8f11432cc49fa16d3c2c13b"
+  },
+  {
+    "_id": "e654816a8302bc5fc6d4e8bc",
+    "mine": "64ced8043ed06a97c5296ba5",
+    "date": "2025-05-11T12:00:00.000Z",
+    "quantity": 4818,
+    "grade": "G5",
+    "supervisor": "f63022f12ba722bf16e75a96"
+  },
+  {
+    "_id": "07fee249a57e6d1cdc0709ed",
+    "mine": "c54f63a70eb2b4235355e4d1",
+    "date": "2025-05-11T12:00:00.000Z",
+    "quantity": 3386,
+    "grade": "G3",
+    "supervisor": "5ccb1105425ef0cc8d11acfa"
+  },
+  {
+    "_id": "7629034609315a0910545e00",
+    "mine": "ebe90564c35b94dc2f10a5a4",
+    "date": "2025-05-11T12:00:00.000Z",
+    "quantity": 2794,
+    "grade": "G9",
+    "supervisor": "d8f11432cc49fa16d3c2c13b"
+  },
+  {
+    "_id": "254da73ed698218d75c357ef",
+    "mine": "cf8951bdc2248ea725ccb335",
+    "date": "2025-05-12T12:00:00.000Z",
+    "quantity": 8103,
+    "grade": "G4",
+    "supervisor": "5ccb1105425ef0cc8d11acfa"
+  },
+  {
+    "_id": "a1772d60650d3017e34b4613",
+    "mine": "2523953159fd65bf3634c90d",
+    "date": "2025-05-12T12:00:00.000Z",
+    "quantity": 8117,
+    "grade": "G9",
+    "supervisor": "d8f11432cc49fa16d3c2c13b"
+  },
+  {
+    "_id": "da2d66c5a69f265372fac3a7",
+    "mine": "64ced8043ed06a97c5296ba5",
+    "date": "2025-05-12T12:00:00.000Z",
+    "quantity": 5953,
+    "grade": "G3",
+    "supervisor": "f63022f12ba722bf16e75a96"
+  },
+  {
+    "_id": "25703229377c2d789d8117fa",
+    "mine": "c54f63a70eb2b4235355e4d1",
+    "date": "2025-05-12T12:00:00.000Z",
+    "quantity": 3359,
+    "grade": "G7",
+    "supervisor": "5ccb1105425ef0cc8d11acfa"
+  },
+  {
+    "_id": "d7be39a8a81ae12c818f20aa",
+    "mine": "ebe90564c35b94dc2f10a5a4",
+    "date": "2025-05-12T12:00:00.000Z",
+    "quantity": 3187,
+    "grade": "G5",
+    "supervisor": "d8f11432cc49fa16d3c2c13b"
+  },
+  {
+    "_id": "b52a31e2900c4e9d118d2a25",
+    "mine": "cf8951bdc2248ea725ccb335",
+    "date": "2025-05-13T12:00:00.000Z",
+    "quantity": 9568,
+    "grade": "G7",
+    "supervisor": "5ccb1105425ef0cc8d11acfa"
+  },
+  {
+    "_id": "4c8d62c4b681392738ebf8b5",
+    "mine": "2523953159fd65bf3634c90d",
+    "date": "2025-05-13T12:00:00.000Z",
+    "quantity": 8020,
+    "grade": "G7",
+    "supervisor": "d8f11432cc49fa16d3c2c13b"
+  },
+  {
+    "_id": "7c61dfc365386137233b6297",
+    "mine": "64ced8043ed06a97c5296ba5",
+    "date": "2025-05-13T12:00:00.000Z",
+    "quantity": 5148,
+    "grade": "G9",
+    "supervisor": "f63022f12ba722bf16e75a96"
+  },
+  {
+    "_id": "e8fb46e179dea2c635787126",
+    "mine": "c54f63a70eb2b4235355e4d1",
+    "date": "2025-05-13T12:00:00.000Z",
+    "quantity": 3976,
+    "grade": "G7",
+    "supervisor": "5ccb1105425ef0cc8d11acfa"
+  },
+  {
+    "_id": "0da42d849b3a2175b6ea2129",
+    "mine": "ebe90564c35b94dc2f10a5a4",
+    "date": "2025-05-13T12:00:00.000Z",
+    "quantity": 3083,
+    "grade": "G5",
+    "supervisor": "d8f11432cc49fa16d3c2c13b"
+  },
+  {
+    "_id": "8811c6553e2c48f805e069dd",
+    "mine": "cf8951bdc2248ea725ccb335",
+    "date": "2025-05-14T12:00:00.000Z",
+    "quantity": 8794,
+    "grade": "G5",
+    "supervisor": "5ccb1105425ef0cc8d11acfa"
+  },
+  {
+    "_id": "15f229dea5df94cd6b726fbf",
+    "mine": "2523953159fd65bf3634c90d",
+    "date": "2025-05-14T12:00:00.000Z",
+    "quantity": 7721,
+    "grade": "G4",
+    "supervisor": "d8f11432cc49fa16d3c2c13b"
+  },
+  {
+    "_id": "e7f7b7d464d42d506894a9a6",
+    "mine": "64ced8043ed06a97c5296ba5",
+    "date": "2025-05-14T12:00:00.000Z",
+    "quantity": 5989,
+    "grade": "G3",
+    "supervisor": "f63022f12ba722bf16e75a96"
+  },
+  {
+    "_id": "7b637c7798a26b082c1a3a33",
+    "mine": "c54f63a70eb2b4235355e4d1",
+    "date": "2025-05-14T12:00:00.000Z",
+    "quantity": 3919,
+    "grade": "G5",
+    "supervisor": "5ccb1105425ef0cc8d11acfa"
+  },
+  {
+    "_id": "c0120abefaa10f676ca4ea97",
+    "mine": "ebe90564c35b94dc2f10a5a4",
+    "date": "2025-05-14T12:00:00.000Z",
+    "quantity": 3175,
+    "grade": "G4",
+    "supervisor": "d8f11432cc49fa16d3c2c13b"
+  },
+  {
+    "_id": "2a7b7f79818ad93840078de8",
+    "mine": "cf8951bdc2248ea725ccb335",
+    "date": "2025-05-15T12:00:00.000Z",
+    "quantity": 9546,
+    "grade": "G9",
+    "supervisor": "5ccb1105425ef0cc8d11acfa"
+  },
+  {
+    "_id": "2107bdb512501910283d7b49",
+    "mine": "2523953159fd65bf3634c90d",
+    "date": "2025-05-15T12:00:00.000Z",
+    "quantity": 7726,
+    "grade": "G9",
+    "supervisor": "d8f11432cc49fa16d3c2c13b"
+  },
+  {
+    "_id": "a50301723fde6316ca592f3a",
+    "mine": "64ced8043ed06a97c5296ba5",
+    "date": "2025-05-15T12:00:00.000Z",
+    "quantity": 5294,
+    "grade": "G4",
+    "supervisor": "f63022f12ba722bf16e75a96"
+  },
+  {
+    "_id": "2072a57039ba476f3816511b",
+    "mine": "c54f63a70eb2b4235355e4d1",
+    "date": "2025-05-15T12:00:00.000Z",
+    "quantity": 3538,
+    "grade": "G9",
+    "supervisor": "5ccb1105425ef0cc8d11acfa"
+  },
+  {
+    "_id": "af02800b9d8640a2d99b2a23",
+    "mine": "ebe90564c35b94dc2f10a5a4",
+    "date": "2025-05-15T12:00:00.000Z",
+    "quantity": 3189,
+    "grade": "G5",
+    "supervisor": "d8f11432cc49fa16d3c2c13b"
+  },
+  {
+    "_id": "4473cb4a753eeac1b0b291d6",
+    "mine": "cf8951bdc2248ea725ccb335",
+    "date": "2025-05-16T12:00:00.000Z",
+    "quantity": 9765,
+    "grade": "G9",
+    "supervisor": "5ccb1105425ef0cc8d11acfa"
+  },
+  {
+    "_id": "3b235ef6968d04a330845c9f",
+    "mine": "2523953159fd65bf3634c90d",
+    "date": "2025-05-16T12:00:00.000Z",
+    "quantity": 7384,
+    "grade": "G9",
+    "supervisor": "d8f11432cc49fa16d3c2c13b"
+  },
+  {
+    "_id": "315394188fd68ba61f97ed7b",
+    "mine": "64ced8043ed06a97c5296ba5",
+    "date": "2025-05-16T12:00:00.000Z",
+    "quantity": 5310,
+    "grade": "G5",
+    "supervisor": "f63022f12ba722bf16e75a96"
+  },
+  {
+    "_id": "e171004fb98d8d56dc361058",
+    "mine": "c54f63a70eb2b4235355e4d1",
+    "date": "2025-05-16T12:00:00.000Z",
+    "quantity": 3789,
+    "grade": "G9",
+    "supervisor": "5ccb1105425ef0cc8d11acfa"
+  },
+  {
+    "_id": "f2180642efb91dc5c255c85a",
+    "mine": "ebe90564c35b94dc2f10a5a4",
+    "date": "2025-05-16T12:00:00.000Z",
+    "quantity": 3240,
+    "grade": "G7",
+    "supervisor": "d8f11432cc49fa16d3c2c13b"
+  },
+  {
+    "_id": "6bd879de45d2929e15037d5d",
+    "mine": "cf8951bdc2248ea725ccb335",
+    "date": "2025-05-17T12:00:00.000Z",
+    "quantity": 9230,
+    "grade": "G7",
+    "supervisor": "5ccb1105425ef0cc8d11acfa"
+  },
+  {
+    "_id": "81b7b81cbf032490d5a8b6d5",
+    "mine": "2523953159fd65bf3634c90d",
+    "date": "2025-05-17T12:00:00.000Z",
+    "quantity": 7191,
+    "grade": "G4",
+    "supervisor": "d8f11432cc49fa16d3c2c13b"
+  },
+  {
+    "_id": "61341e87dbaa56e965f8c0fe",
+    "mine": "64ced8043ed06a97c5296ba5",
+    "date": "2025-05-17T12:00:00.000Z",
+    "quantity": 5600,
+    "grade": "G3",
+    "supervisor": "f63022f12ba722bf16e75a96"
+  },
+  {
+    "_id": "23facd7836a091a6525c0a58",
+    "mine": "c54f63a70eb2b4235355e4d1",
+    "date": "2025-05-17T12:00:00.000Z",
+    "quantity": 3908,
+    "grade": "G5",
+    "supervisor": "5ccb1105425ef0cc8d11acfa"
+  },
+  {
+    "_id": "1bc1b8e2a8706f45a098be33",
+    "mine": "ebe90564c35b94dc2f10a5a4",
+    "date": "2025-05-17T12:00:00.000Z",
+    "quantity": 2668,
+    "grade": "G4",
+    "supervisor": "d8f11432cc49fa16d3c2c13b"
+  },
+  {
+    "_id": "f83341ab0941b8f130e35baf",
+    "mine": "cf8951bdc2248ea725ccb335",
+    "date": "2025-05-18T12:00:00.000Z",
+    "quantity": 9834,
+    "grade": "G9",
+    "supervisor": "5ccb1105425ef0cc8d11acfa"
+  },
+  {
+    "_id": "8793a662d49036aa3097ea1c",
+    "mine": "2523953159fd65bf3634c90d",
+    "date": "2025-05-18T12:00:00.000Z",
+    "quantity": 7293,
+    "grade": "G7",
+    "supervisor": "d8f11432cc49fa16d3c2c13b"
+  },
+  {
+    "_id": "6b3422974b3d83a32df0bc86",
+    "mine": "64ced8043ed06a97c5296ba5",
+    "date": "2025-05-18T12:00:00.000Z",
+    "quantity": 4769,
+    "grade": "G9",
+    "supervisor": "f63022f12ba722bf16e75a96"
+  },
+  {
+    "_id": "ea9adfc95679ef7a3f7b3bb6",
+    "mine": "c54f63a70eb2b4235355e4d1",
+    "date": "2025-05-18T12:00:00.000Z",
+    "quantity": 3292,
+    "grade": "G9",
+    "supervisor": "5ccb1105425ef0cc8d11acfa"
+  },
+  {
+    "_id": "40b0211479ffabbadf17fc70",
+    "mine": "ebe90564c35b94dc2f10a5a4",
+    "date": "2025-05-18T12:00:00.000Z",
+    "quantity": 2903,
+    "grade": "G5",
+    "supervisor": "d8f11432cc49fa16d3c2c13b"
+  },
+  {
+    "_id": "7e34dc5c0c7b8d6e7967936f",
+    "mine": "cf8951bdc2248ea725ccb335",
+    "date": "2025-05-19T12:00:00.000Z",
+    "quantity": 8765,
+    "grade": "G7",
+    "supervisor": "5ccb1105425ef0cc8d11acfa"
+  },
+  {
+    "_id": "1646b29af3b659b6441c61b1",
+    "mine": "2523953159fd65bf3634c90d",
+    "date": "2025-05-19T12:00:00.000Z",
+    "quantity": 7233,
+    "grade": "G9",
+    "supervisor": "d8f11432cc49fa16d3c2c13b"
+  },
+  {
+    "_id": "3cc12c8c699ec7927d05017c",
+    "mine": "64ced8043ed06a97c5296ba5",
+    "date": "2025-05-19T12:00:00.000Z",
+    "quantity": 5289,
+    "grade": "G4",
+    "supervisor": "f63022f12ba722bf16e75a96"
+  },
+  {
+    "_id": "c0a05e7b2230cce4e629d56a",
+    "mine": "c54f63a70eb2b4235355e4d1",
+    "date": "2025-05-19T12:00:00.000Z",
+    "quantity": 3919,
+    "grade": "G9",
+    "supervisor": "5ccb1105425ef0cc8d11acfa"
+  },
+  {
+    "_id": "9b1564cda4a99a1895692e32",
+    "mine": "ebe90564c35b94dc2f10a5a4",
+    "date": "2025-05-19T12:00:00.000Z",
+    "quantity": 2945,
+    "grade": "G7",
+    "supervisor": "d8f11432cc49fa16d3c2c13b"
+  }
+]

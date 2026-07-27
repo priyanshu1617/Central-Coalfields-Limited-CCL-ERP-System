@@ -1,0 +1,21 @@
+[
+  {
+    "_id": "3a8f31af96977af79958ee66",
+    "employee": "d8f11432cc49fa16d3c2c13b",
+    "leaveType": "Earned Leave",
+    "startDate": "2025-06-01T00:00:00.000Z",
+    "endDate": "2025-06-10T00:00:00.000Z",
+    "reason": "Visiting hometown for family marriage function",
+    "status": "Approved",
+    "approvedBy": "e18d60b540fe5128f76196fe"
+  },
+  {
+    "_id": "3cc650a8a8d73f9056ca47cf",
+    "employee": "f63022f12ba722bf16e75a96",
+    "leaveType": "Sick Leave",
+    "startDate": "2025-05-20T00:00:00.000Z",
+    "endDate": "2025-05-22T00:00:00.000Z",
+    "reason": "Fever and medical checkup",
+    "status": "Pending"
+  }
+]

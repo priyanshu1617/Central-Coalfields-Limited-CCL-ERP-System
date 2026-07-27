@@ -1,0 +1,24 @@
+[
+  {
+    "_id": "efdcef76a46ffa6d1b32731c",
+    "truckNumber": "JH01EF-1234",
+    "coalQuantity": 25,
+    "destination": "NTPC Kahalgaon Thermal Power Station",
+    "customer": "NTPC Limited",
+    "invoiceNumber": "INV-2025-0988",
+    "dispatchTime": "2025-05-19T10:15:00.000Z",
+    "status": "In Transit",
+    "gatePassNumber": "GP-9921-2025"
+  },
+  {
+    "_id": "c1b2c2e709de4bfdff9e2c2a",
+    "truckNumber": "JH02GH-5678",
+    "coalQuantity": 32,
+    "destination": "DVC Bokaro Thermal Power Station",
+    "customer": "Damodar Valley Corporation",
+    "invoiceNumber": "INV-2025-0989",
+    "dispatchTime": "2025-05-19T08:30:00.000Z",
+    "status": "Delivered",
+    "gatePassNumber": "GP-9922-2025"
+  }
+]

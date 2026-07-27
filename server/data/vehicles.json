@@ -1,0 +1,48 @@
+[
+  {
+    "_id": "f5ad0f149baeb16d3512f9d1",
+    "regNumber": "JH01EF-1234",
+    "model": "Tata Signa 4825.TK",
+    "driver": "d8f11432cc49fa16d3c2c13b",
+    "insuranceExpiry": "2027-05-10T00:00:00.000Z",
+    "status": "Active",
+    "gpsStatus": "Online",
+    "fuelLogs": [
+      {
+        "date": "2026-07-18T00:00:00.000Z",
+        "quantity": 180,
+        "cost": 16200
+      }
+    ],
+    "maintenanceLogs": [
+      {
+        "date": "2026-05-15T00:00:00.000Z",
+        "description": "Tyre change and alignment",
+        "cost": 35000
+      }
+    ]
+  },
+  {
+    "_id": "d3f910e29b6821b71bd40a26",
+    "regNumber": "HR55K-9921",
+    "model": "Ashok Leyland U-4019",
+    "driver": "f63022f12ba722bf16e75a96",
+    "insuranceExpiry": "2026-11-20T00:00:00.000Z",
+    "status": "Maintenance",
+    "gpsStatus": "Offline",
+    "fuelLogs": [
+      {
+        "date": "2026-07-15T00:00:00.000Z",
+        "quantity": 200,
+        "cost": 18000
+      }
+    ],
+    "maintenanceLogs": [
+      {
+        "date": "2026-07-19T00:00:00.000Z",
+        "description": "Engine oil and coolant replacement",
+        "cost": 12000
+      }
+    ]
+  }
+]

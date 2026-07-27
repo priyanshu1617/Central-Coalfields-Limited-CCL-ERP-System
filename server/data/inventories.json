@@ -1,0 +1,42 @@
+[
+  {
+    "_id": "42c5bf59bc6f9cb6000bdf35",
+    "name": "High Speed Diesel",
+    "category": "Diesel",
+    "stockQuantity": 45000,
+    "reorderLevel": 10000,
+    "barcode": "DSL-00982-HSD",
+    "unit": "liters",
+    "supplier": "63a142ed57f720a4679ec113"
+  },
+  {
+    "_id": "92393a93e2e886c64d40e171",
+    "name": "Explosive ANFO (Ammonium Nitrate Fuel Oil)",
+    "category": "Explosives",
+    "stockQuantity": 120,
+    "reorderLevel": 150,
+    "barcode": "EXP-ANFO-7762",
+    "unit": "kg",
+    "supplier": "32571d0c8f0551d2a8bb958d"
+  },
+  {
+    "_id": "40e17249514a1c746128e4c5",
+    "name": "Excavator Bucket Teeth PC-1250",
+    "category": "Spare Parts",
+    "stockQuantity": 24,
+    "reorderLevel": 10,
+    "barcode": "SPR-EXC-BUCKET",
+    "unit": "pcs",
+    "supplier": "63a142ed57f720a4679ec113"
+  },
+  {
+    "_id": "fb54efc038c329e50aaf7bba",
+    "name": "Heavy Duty Mining Safety Kits (Safety Helmet, Steel-Toe Boots, Reflective Vest)",
+    "category": "PPE Kits",
+    "stockQuantity": 80,
+    "reorderLevel": 100,
+    "barcode": "PPE-KIT-HEAVY",
+    "unit": "pcs",
+    "supplier": "750656bf5acc19e0f0abe3b4"
+  }
+]

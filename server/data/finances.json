@@ -1,0 +1,38 @@
+[
+  {
+    "_id": "f84907bd0ec8c92ca8572947",
+    "type": "Revenue",
+    "category": "Coal Sales",
+    "amount": 4500000,
+    "date": "2025-05-18T00:00:00.000Z",
+    "costCenter": "North Karanpura Mine",
+    "description": "Invoice payment received from NTPC"
+  },
+  {
+    "_id": "374b1c4e84e533b625fbcfc2",
+    "type": "Expense",
+    "category": "Fuel Cost",
+    "amount": 280000,
+    "date": "2025-05-17T00:00:00.000Z",
+    "costCenter": "Ranchi HQ Logistics",
+    "description": "Diesel bulk purchase (3500 liters) for dumper fleet"
+  },
+  {
+    "_id": "c94fbc46009aae477c25e41a",
+    "type": "Expense",
+    "category": "Equipment Purchase",
+    "amount": 15000000,
+    "date": "2025-05-01T00:00:00.000Z",
+    "costCenter": "West Bokaro Mine",
+    "description": "Acquisition of new Sandvik Drill Rig"
+  },
+  {
+    "_id": "1d541b39313f273b278d7a8a",
+    "type": "Expense",
+    "category": "Salaries",
+    "amount": 850000,
+    "date": "2025-05-01T00:00:00.000Z",
+    "costCenter": "Ranchi HQ",
+    "description": "Executive and operations team salaries (May 2025)"
+  }
+]

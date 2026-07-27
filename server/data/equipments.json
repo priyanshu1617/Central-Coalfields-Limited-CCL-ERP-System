@@ -1,0 +1,57 @@
+[
+  {
+    "_id": "8d7dfe4296d15abb86d84266",
+    "name": "Komatsu PC-1250",
+    "regNumber": "EQ-EXC-001",
+    "model": "Excavator",
+    "status": "Running",
+    "runningHours": 4200,
+    "fuelConsumption": 45,
+    "nextServiceDate": "2026-08-15T00:00:00.000Z",
+    "assignedMine": "cf8951bdc2248ea725ccb335"
+  },
+  {
+    "_id": "dfed9b4ac24e8bb3b16aca5d",
+    "name": "Caterpillar 777D",
+    "regNumber": "EQ-DMP-001",
+    "model": "Dumper",
+    "status": "Running",
+    "runningHours": 5800,
+    "fuelConsumption": 38,
+    "nextServiceDate": "2026-08-20T00:00:00.000Z",
+    "assignedMine": "2523953159fd65bf3634c90d"
+  },
+  {
+    "_id": "c0621f89f4d419902ea23268",
+    "name": "Sandvik DR412i",
+    "regNumber": "EQ-DRL-001",
+    "model": "Drill",
+    "status": "Idle",
+    "runningHours": 1900,
+    "fuelConsumption": 25,
+    "nextServiceDate": "2026-09-01T00:00:00.000Z",
+    "assignedMine": "64ced8043ed06a97c5296ba5"
+  },
+  {
+    "_id": "acac04e164b702e16efd30c4",
+    "name": "Komatsu D375A",
+    "regNumber": "EQ-DOZ-001",
+    "model": "Dozer",
+    "status": "Running",
+    "runningHours": 3100,
+    "fuelConsumption": 30,
+    "nextServiceDate": "2026-08-25T00:00:00.000Z",
+    "assignedMine": "c54f63a70eb2b4235355e4d1"
+  },
+  {
+    "_id": "3d8e97eafc2ee9cee32ae175",
+    "name": "Liebherr LTM 1050",
+    "regNumber": "EQ-CRN-001",
+    "model": "Crane",
+    "status": "Maintenance",
+    "runningHours": 2400,
+    "fuelConsumption": 20,
+    "nextServiceDate": "2026-07-22T00:00:00.000Z",
+    "assignedMine": "cf8951bdc2248ea725ccb335"
+  }
+]

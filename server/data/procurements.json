@@ -1,0 +1,20 @@
+[
+  {
+    "_id": "e7a6881af6740f68715ef4e0",
+    "item": "92393a93e2e886c64d40e171",
+    "quantity": 100,
+    "requestedBy": "5ccb1105425ef0cc8d11acfa",
+    "status": "Pending",
+    "estimatedCost": 150000
+  },
+  {
+    "_id": "ca81d8fd53f74b19326244c9",
+    "item": "fb54efc038c329e50aaf7bba",
+    "quantity": 150,
+    "requestedBy": "e18d60b540fe5128f76196fe",
+    "status": "Approved",
+    "approvedBy": "2536601a4a4fe6e65bae5d46",
+    "vendor": "750656bf5acc19e0f0abe3b4",
+    "estimatedCost": 225000
+  }
+]
