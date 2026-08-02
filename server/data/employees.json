@@ -219,5 +219,25 @@
     ],
     "createdAt": "2026-07-27T15:19:29.623Z",
     "updatedAt": "2026-07-27T15:19:29.623Z"
+  },
+  {
+    "_id": "955ebbc19111024e2cb69032",
+    "name": "Parthiv Mishra",
+    "email": "parthiv@ccl.gov.in",
+    "password": "$2a$10$q.k3edAjjPvUWlJMZ9XvKuCGtvj7AIV1/0/u1qMpx9c5F2yeurttS",
+    "role": "Employee",
+    "employeeId": "ccl012",
+    "department": "Mining Operations",
+    "designation": "Mining Sirdar",
+    "baseSalary": 20000,
+    "timeline": [
+      {
+        "date": "2026-07-28T13:53:10.696Z",
+        "event": "Joined",
+        "details": "Added to CCL ERP system"
+      }
+    ],
+    "createdAt": "2026-07-28T13:53:10.697Z",
+    "updatedAt": "2026-07-28T13:53:10.697Z"
   }
 ]

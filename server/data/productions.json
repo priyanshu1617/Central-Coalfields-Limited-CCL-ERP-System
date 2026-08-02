@@ -758,5 +758,25 @@
     "quantity": 2945,
     "grade": "G7",
     "supervisor": "d8f11432cc49fa16d3c2c13b"
+  },
+  {
+    "_id": "fe7ccc38c270b2bcdb0572cc",
+    "mine": "cf8951bdc2248ea725ccb335",
+    "quantity": 9500,
+    "grade": "G7",
+    "date": "2025-05-01T00:00:00.000Z",
+    "supervisor": "5ccb1105425ef0cc8d11acfa",
+    "createdAt": "2026-07-29T06:58:59.696Z",
+    "updatedAt": "2026-07-29T06:58:59.696Z"
+  },
+  {
+    "_id": "181531cbda19a77337bd2c0c",
+    "mine": "cf8951bdc2248ea725ccb335",
+    "quantity": 2,
+    "grade": "G3",
+    "date": "2026-07-29T07:11:41.117Z",
+    "supervisor": "5ccb1105425ef0cc8d11acfa",
+    "createdAt": "2026-07-29T07:11:41.197Z",
+    "updatedAt": "2026-07-29T07:11:41.197Z"
   }
 ]

@@ -5,9 +5,10 @@
     "area": "Karanpura Area",
     "status": "Operational",
     "targetOutput": 270000,
-    "dailyOutput": 8560,
+    "dailyOutput": 2,
     "supervisor": "5ccb1105425ef0cc8d11acfa",
-    "safetyStatus": "Safe"
+    "safetyStatus": "Safe",
+    "updatedAt": "2026-07-29T07:11:41.202Z"
   },
   {
     "_id": "2523953159fd65bf3634c90d",
