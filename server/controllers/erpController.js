@@ -22,10 +22,13 @@ import Circular from '../models/Circular.js';
 // ==========================================
 export const login = async (req, res, next) => {
   try {
-    const { email, password } = req.body;
+    let { email, password } = req.body;
     if (!email || !password) {
       return res.status(400).json({ success: false, message: 'Please provide email and password' });
     }
+
+    // Trim whitespace and normalize case to prevent login failures due to trailing spaces
+    email = email.trim().toLowerCase();
 
     const employee = await dbHelper.findOne(Employee, { email });
     if (!employee) {
@@ -50,6 +53,55 @@ export const login = async (req, res, next) => {
       token,
       user: userResponse
     });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const register = async (req, res, next) => {
+  try {
+    let { name, email, password, role, employeeId, department, designation } = req.body;
+    if (!name || !email || !password || !employeeId || !department || !designation) {
+      return res.status(400).json({ success: false, message: 'Please provide all required fields (name, email, password, employeeId, department, designation).' });
+    }
+
+    // Sanitize inputs
+    name = name.trim();
+    email = email.trim().toLowerCase();
+    employeeId = employeeId.trim().toUpperCase();
+    department = department.trim();
+    designation = designation.trim();
+
+    // Server-side strict domain security check
+    if (!email.endsWith('@ccl.gov.in')) {
+      return res.status(400).json({ success: false, message: 'Registration is restricted to official @ccl.gov.in email addresses.' });
+    }
+
+    // Server-side strict Employee ID format verification
+    if (!/^CCL\d+$/.test(employeeId)) {
+      return res.status(400).json({ success: false, message: 'Employee ID must start with "CCL" followed by numbers (e.g. CCL108).' });
+    }
+
+    const existing = await dbHelper.findOne(Employee, { $or: [{ email }, { employeeId }] });
+    if (existing) {
+      return res.status(400).json({ success: false, message: 'An employee with this email or ID already exists.' });
+    }
+
+    const hashedPassword = bcrypt.hashSync(password, 10);
+
+    const newEmp = await dbHelper.create(Employee, {
+      name,
+      email,
+      password: hashedPassword,
+      role: role || 'Employee',
+      employeeId,
+      department,
+      designation,
+      baseSalary: 35000,
+      timeline: [{ date: new Date(), event: 'Registration', details: 'Self-registered on CCL ERP system' }]
+    });
+
+    res.status(201).json({ success: true, message: 'Registered successfully', data: newEmp });
   } catch (error) {
     next(error);
   }

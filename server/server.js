@@ -46,6 +46,20 @@ app.get('/health', (req, res) => {
   res.status(200).json({ status: 'OK', database: getDbMode() ? 'Mock-JSON' : 'MongoDB-Atlas' });
 });
 
+// Root-level Alias Redirects (Preserving POST method & body data using HTTP 307)
+app.post('/register', (req, res) => {
+  res.redirect(307, '/api/auth/register');
+});
+app.post('/login', (req, res) => {
+  res.redirect(307, '/api/auth/login');
+});
+app.get('/register', (req, res) => {
+  res.redirect(301, 'http://localhost:5174/register');
+});
+app.get('/login', (req, res) => {
+  res.redirect(301, 'http://localhost:5174/login');
+});
+
 // Bind API Routes
 app.use('/api', apiRoutes);
 

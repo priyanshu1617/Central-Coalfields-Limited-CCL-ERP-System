@@ -38,6 +38,9 @@ export const NotificationProvider = ({ children }) => {
   // Optionally load fresh notifications from circulars/safety incidents endpoints on boot
   useEffect(() => {
     const fetchRealAlerts = async () => {
+      const token = localStorage.getItem('ccl_token');
+      if (!token) return; // Skip API request if not logged in
+
       try {
         const res = await api.get('/safety');
         if (res.data.success) {

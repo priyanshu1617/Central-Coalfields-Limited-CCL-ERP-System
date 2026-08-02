@@ -4,6 +4,7 @@ import { authorize } from '../middleware/role.js';
 import upload from '../middleware/upload.js';
 import {
   login,
+  register,
   getProfile,
   changePassword,
   getEmployees,
@@ -58,6 +59,7 @@ const router = express.Router();
 // PUBLIC ROUTES
 // ==========================================
 router.post('/auth/login', login);
+router.post('/auth/register', register);
 
 // ==========================================
 // PROTECTED ROUTES (Requires JWT)

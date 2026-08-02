@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
 import Button from '../components/Button.jsx';
 import Card from '../components/Card.jsx';
@@ -114,6 +114,15 @@ const Login = () => {
         </Button>
 
       </form>
+
+      <div className="text-center mt-4">
+        <p className="text-xs text-slate-500">
+          Don't have an account?{' '}
+          <Link to="/register" className="text-ccl-primary dark:text-ccl-accent font-semibold hover:underline">
+            Register Here
+          </Link>
+        </p>
+      </div>
 
       {/* Setup instructions helper for standard reviewer */}
       <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 text-[10px] text-slate-400 space-y-1">

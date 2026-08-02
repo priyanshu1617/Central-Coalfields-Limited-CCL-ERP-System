@@ -7,6 +7,7 @@ import AuthLayout from '../layouts/AuthLayout.jsx';
 // Pages
 import Dashboard from '../pages/Dashboard.jsx';
 import Login from '../pages/Login.jsx';
+import Register from '../pages/Register.jsx';
 import HR from '../pages/HR.jsx';
 import Attendance from '../pages/Attendance.jsx';
 import Leave from '../pages/Leave.jsx';
@@ -33,6 +34,14 @@ const AppRoutes = () => {
         element={
           <AuthLayout>
             <Login />
+          </AuthLayout>
+        }
+      />
+      <Route
+        path="/register"
+        element={
+          <AuthLayout>
+            <Register />
           </AuthLayout>
         }
       />
