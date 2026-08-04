@@ -3,7 +3,7 @@ import api from '../services/api.js';
 import { useAuth } from '../context/AuthContext.jsx';
 import Card from '../components/Card.jsx';
 import Button from '../components/Button.jsx';
-import { Users, UserPlus, Search, ShieldCheck, Mail, Briefcase, Plus, Calendar, Trash2, X } from 'lucide-react';
+import { Users, UserPlus, Search, Mail, Briefcase, Trash2, Edit2, X } from 'lucide-react';
 
 const HR = () => {
   const { user: currentUser } = useAuth();
@@ -12,6 +12,7 @@ const HR = () => {
   const [search, setSearch] = useState('');
   const [selectedDept, setSelectedDept] = useState('');
   const [showAddModal, setShowAddModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
 
   // New Employee Form State
@@ -19,6 +20,9 @@ const HR = () => {
     name: '', email: '', employeeId: '', department: 'Mining Operations',
     designation: '', baseSalary: '', role: 'Employee', password: 'ccl12345'
   });
+
+  // Edit Employee Form State
+  const [editEmp, setEditEmp] = useState(null);
   const [formError, setFormError] = useState('');
 
   const fetchEmployees = async () => {
@@ -30,11 +34,10 @@ const HR = () => {
       }
     } catch (err) {
       console.warn('Backend server down, loading mock directory.');
-      // Mock employees data
       setEmployees([
         { _id: '1', name: 'Aditya Vardhan', email: 'admin@ccl.gov.in', role: 'Admin', employeeId: 'CCL001', department: 'Administration', designation: 'General Manager', status: 'Active', baseSalary: 120000, timeline: [{ date: '2024-01-10', event: 'Promotion', details: 'Promoted to General Manager' }] },
         { _id: '2', name: 'Priyanka Sharma', email: 'hr@ccl.gov.in', role: 'HR', employeeId: 'CCL002', department: 'Human Resources', designation: 'HR Manager', status: 'Active', baseSalary: 75000, timeline: [{ date: '2024-03-15', event: 'Joined', details: 'Joined CCL Ranchi HQ' }] },
-        { _id: '3', name: 'Rajiv Kumar', email: 'manager@ccl.gov.in', role: 'Mine Manager', employeeId: 'CCL003', department: 'Mining Operations', designation: 'Senior Mine Manager', status: 'Active', baseSalary: 95000, timeline: [{ date: '2024-08-01', event: 'Promotion', details: 'Promoted to Senior Mine Manager' }], emergencyContact: { name: 'Sunita Devi', relation: 'Spouse', phone: '+91 9876543210' } },
+        { _id: '3', name: 'Rajiv Kumar', email: 'manager@ccl.gov.in', role: 'Mine Manager', employeeId: 'CCL003', department: 'Mining Operations', designation: 'Senior Mine Manager', status: 'Active', baseSalary: 95000, timeline: [{ date: '2024-08-01', event: 'Promotion', details: 'Promoted to Senior Mine Manager' }] },
         { _id: '4', name: 'Vikash Kumar', email: 'vikash.kumar@ccl.gov.in', role: 'Employee', employeeId: 'CCL008', department: 'Mining Operations', designation: 'Mining Sirdar', status: 'Active', baseSalary: 45000, timeline: [{ date: '2025-01-05', event: 'Joining', details: 'Joined North Karanpura Team' }] },
         { _id: '5', name: 'Sunil Verma', email: 'sunil.verma@ccl.gov.in', role: 'Employee', employeeId: 'CCL009', department: 'Mining Operations', designation: 'Mining Sirdar', status: 'Active', baseSalary: 42000, timeline: [{ date: '2025-05-18', event: 'Joining', details: 'Joined North Karanpura Team' }] }
       ]);
@@ -66,6 +69,35 @@ const HR = () => {
       }
     } catch (err) {
       setFormError(err.response?.data?.message || 'Error creating employee.');
+    }
+  };
+
+  const handleOpenEdit = (emp) => {
+    setEditEmp({ ...emp });
+    setFormError('');
+    setShowEditModal(true);
+  };
+
+  const handleUpdateEmployee = async (e) => {
+    e.preventDefault();
+    setFormError('');
+    if (!editEmp.name || !editEmp.email || !editEmp.designation) {
+      setFormError('Please fill required fields.');
+      return;
+    }
+
+    try {
+      const res = await api.put(`/employees/${editEmp._id}`, editEmp);
+      if (res.data.success) {
+        setEmployees(employees.map(emp => emp._id === editEmp._id ? res.data.data : emp));
+        if (selectedEmployee?._id === editEmp._id) {
+          setSelectedEmployee(res.data.data);
+        }
+        setShowEditModal(false);
+        setEditEmp(null);
+      }
+    } catch (err) {
+      setFormError(err.response?.data?.message || 'Error updating employee.');
     }
   };
 
@@ -103,7 +135,7 @@ const HR = () => {
         </div>
         
         {isHR && (
-          <Button onClick={() => setShowAddModal(true)} className="shadow-md">
+          <Button onClick={() => { setFormError(''); setShowAddModal(true); }} className="shadow-md">
             <UserPlus size={16} className="mr-1.5" />
             Add Employee Profile
           </Button>
@@ -180,16 +212,28 @@ const HR = () => {
                     <td className="py-3 px-3 text-slate-500 dark:text-slate-400">{emp.department}</td>
                     <td className="py-3 px-3">
                       <span className="h-2 w-2 rounded-full bg-green-500 inline-block mr-1"></span>
-                      <span className="text-[10px] font-semibold">{emp.status}</span>
+                      <span className="text-[10px] font-semibold">{emp.status || 'Active'}</span>
                     </td>
                     <td className="py-3 pl-3 text-right" onClick={(e) => e.stopPropagation()}>
-                      {isHR && emp.email !== currentUser.email && (
-                        <button
-                          onClick={() => handleDeleteEmployee(emp._id)}
-                          className="p-1 text-slate-400 hover:text-red-500 rounded transition hover:bg-slate-100 dark:hover:bg-slate-800"
-                        >
-                          <Trash2 size={14} />
-                        </button>
+                      {isHR && (
+                        <div className="flex items-center justify-end space-x-1">
+                          <button
+                            onClick={() => handleOpenEdit(emp)}
+                            title="Edit Employee"
+                            className="p-1 text-slate-400 hover:text-ccl-primary rounded transition hover:bg-slate-100 dark:hover:bg-slate-800"
+                          >
+                            <Edit2 size={14} />
+                          </button>
+                          {emp.email !== currentUser?.email && (
+                            <button
+                              onClick={() => handleDeleteEmployee(emp._id)}
+                              title="Delete Employee"
+                              className="p-1 text-slate-400 hover:text-red-500 rounded transition hover:bg-slate-100 dark:hover:bg-slate-800"
+                            >
+                              <Trash2 size={14} />
+                            </button>
+                          )}
+                        </div>
                       )}
                     </td>
                   </tr>
@@ -211,6 +255,11 @@ const HR = () => {
                 </div>
                 <h3 className="font-extrabold text-base mt-3 text-slate-800 dark:text-slate-100">{selectedEmployee.name}</h3>
                 <p className="text-[10px] text-slate-400 mt-0.5">{selectedEmployee.employeeId} &bull; {selectedEmployee.designation}</p>
+                {isHR && (
+                  <Button variant="outline" className="text-[10px] h-7 mt-2" onClick={() => handleOpenEdit(selectedEmployee)}>
+                    <Edit2 size={12} className="mr-1" /> Edit Profile
+                  </Button>
+                )}
               </div>
 
               {/* Core particulars */}
@@ -243,15 +292,6 @@ const HR = () => {
                 )}
               </div>
 
-              {/* Emergency Contacts */}
-              {selectedEmployee.emergencyContact && (
-                <div className="p-3 rounded-xl bg-slate-50 dark:bg-ccl-navy/30 border border-slate-100 dark:border-slate-800 text-xs">
-                  <h4 className="font-bold text-[10px] uppercase text-slate-400 tracking-wider mb-1">Emergency Contact</h4>
-                  <div className="font-semibold text-slate-700 dark:text-slate-200">{selectedEmployee.emergencyContact.name} ({selectedEmployee.emergencyContact.relation})</div>
-                  <div className="text-[10px] text-slate-500 mt-0.5">{selectedEmployee.emergencyContact.phone}</div>
-                </div>
-              )}
-
             </div>
           ) : (
             <div className="my-auto text-center p-6 text-slate-400">
@@ -267,7 +307,6 @@ const HR = () => {
       {showAddModal && (
         <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
           <div className="w-full max-w-lg bg-white dark:bg-ccl-navyLight border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl p-6 relative overflow-hidden">
-            
             <button
               onClick={() => setShowAddModal(false)}
               className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
@@ -286,7 +325,6 @@ const HR = () => {
 
             <form onSubmit={handleAddEmployee} className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
-                
                 <div className="space-y-1">
                   <label className="text-[9px] font-bold text-slate-400 uppercase">Full Name</label>
                   <input
@@ -297,7 +335,6 @@ const HR = () => {
                     className="w-full text-xs p-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-transparent"
                   />
                 </div>
-
                 <div className="space-y-1">
                   <label className="text-[9px] font-bold text-slate-400 uppercase">Email Address</label>
                   <input
@@ -308,7 +345,6 @@ const HR = () => {
                     className="w-full text-xs p-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-transparent"
                   />
                 </div>
-
                 <div className="space-y-1">
                   <label className="text-[9px] font-bold text-slate-400 uppercase">Employee ID (e.g. CCL042)</label>
                   <input
@@ -319,7 +355,6 @@ const HR = () => {
                     className="w-full text-xs p-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-transparent"
                   />
                 </div>
-
                 <div className="space-y-1">
                   <label className="text-[9px] font-bold text-slate-400 uppercase">Official Designation</label>
                   <input
@@ -331,7 +366,6 @@ const HR = () => {
                     className="w-full text-xs p-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-transparent"
                   />
                 </div>
-
                 <div className="space-y-1">
                   <label className="text-[9px] font-bold text-slate-400 uppercase">Department</label>
                   <select
@@ -346,7 +380,6 @@ const HR = () => {
                     <option>Safety & Security</option>
                   </select>
                 </div>
-
                 <div className="space-y-1">
                   <label className="text-[9px] font-bold text-slate-400 uppercase">Base Salary (INR)</label>
                   <input
@@ -356,7 +389,6 @@ const HR = () => {
                     className="w-full text-xs p-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-transparent"
                   />
                 </div>
-
                 <div className="space-y-1">
                   <label className="text-[9px] font-bold text-slate-400 uppercase">System Role</label>
                   <select
@@ -374,7 +406,6 @@ const HR = () => {
                     <option>Admin</option>
                   </select>
                 </div>
-
                 <div className="space-y-1">
                   <label className="text-[9px] font-bold text-slate-400 uppercase">Login Key / Password</label>
                   <input
@@ -384,14 +415,136 @@ const HR = () => {
                     className="w-full text-xs p-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-transparent text-slate-400 font-mono"
                   />
                 </div>
-
               </div>
-
               <div className="flex justify-end space-x-2 pt-2 border-t border-slate-100 dark:border-slate-800">
                 <Button variant="outline" onClick={() => setShowAddModal(false)}>Cancel</Button>
                 <Button type="submit">Submit Registration</Button>
               </div>
+            </form>
+          </div>
+        </div>
+      )}
 
+      {/* EDIT EMPLOYEE FORM MODAL */}
+      {showEditModal && editEmp && (
+        <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
+          <div className="w-full max-w-lg bg-white dark:bg-ccl-navyLight border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl p-6 relative overflow-hidden">
+            <button
+              onClick={() => setShowEditModal(false)}
+              className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+            >
+              <X size={20} />
+            </button>
+
+            <h2 className="font-bold text-lg text-ccl-primary dark:text-white mb-2">Edit Employee Profile</h2>
+            <p className="text-xs text-slate-400 mb-4 border-b border-slate-100 dark:border-slate-800 pb-2">Update employee details for {editEmp.name} ({editEmp.employeeId})</p>
+
+            {formError && (
+              <div className="p-2 mb-3 rounded bg-red-50 text-red-500 text-xs text-center border border-red-100">
+                {formError}
+              </div>
+            )}
+
+            <form onSubmit={handleUpdateEmployee} className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-1">
+                  <label className="text-[9px] font-bold text-slate-400 uppercase">Full Name</label>
+                  <input
+                    type="text"
+                    required
+                    value={editEmp.name || ''}
+                    onChange={(e) => setEditEmp({ ...editEmp, name: e.target.value })}
+                    className="w-full text-xs p-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-transparent"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <label className="text-[9px] font-bold text-slate-400 uppercase">Email Address</label>
+                  <input
+                    type="email"
+                    required
+                    value={editEmp.email || ''}
+                    onChange={(e) => setEditEmp({ ...editEmp, email: e.target.value })}
+                    className="w-full text-xs p-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-transparent"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <label className="text-[9px] font-bold text-slate-400 uppercase">Employee ID</label>
+                  <input
+                    type="text"
+                    disabled
+                    value={editEmp.employeeId || ''}
+                    className="w-full text-xs p-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-800 cursor-not-allowed text-slate-500"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <label className="text-[9px] font-bold text-slate-400 uppercase">Official Designation</label>
+                  <input
+                    type="text"
+                    required
+                    value={editEmp.designation || ''}
+                    onChange={(e) => setEditEmp({ ...editEmp, designation: e.target.value })}
+                    className="w-full text-xs p-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-transparent"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <label className="text-[9px] font-bold text-slate-400 uppercase">Department</label>
+                  <select
+                    value={editEmp.department || 'Mining Operations'}
+                    onChange={(e) => setEditEmp({ ...editEmp, department: e.target.value })}
+                    className="w-full text-xs p-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-ccl-navy"
+                  >
+                    <option>Administration</option>
+                    <option>Human Resources</option>
+                    <option>Mining Operations</option>
+                    <option>Finance & Accounts</option>
+                    <option>Safety & Security</option>
+                  </select>
+                </div>
+                <div className="space-y-1">
+                  <label className="text-[9px] font-bold text-slate-400 uppercase">Base Salary (INR)</label>
+                  <input
+                    type="number"
+                    value={editEmp.baseSalary || ''}
+                    onChange={(e) => setEditEmp({ ...editEmp, baseSalary: Number(e.target.value) })}
+                    className="w-full text-xs p-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-transparent"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <label className="text-[9px] font-bold text-slate-400 uppercase">System Role</label>
+                  <select
+                    value={editEmp.role || 'Employee'}
+                    onChange={(e) => setEditEmp({ ...editEmp, role: e.target.value })}
+                    className="w-full text-xs p-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-ccl-navy"
+                  >
+                    <option>Employee</option>
+                    <option>HR</option>
+                    <option>Mine Manager</option>
+                    <option>Production Manager</option>
+                    <option>Finance Manager</option>
+                    <option>Inventory Manager</option>
+                    <option>Safety Officer</option>
+                    <option>Admin</option>
+                  </select>
+                </div>
+                <div className="space-y-1">
+                  <label className="text-[9px] font-bold text-slate-400 uppercase">Status</label>
+                  <select
+                    value={editEmp.status || 'Active'}
+                    onChange={(e) => setEditEmp({ ...editEmp, status: e.target.value })}
+                    className="w-full text-xs p-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-ccl-navy"
+                  >
+                    <option>Active</option>
+                    <option>On Leave</option>
+                    <option>Transferred</option>
+                    <option>Retired</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="flex justify-end space-x-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+                <Button variant="outline" onClick={() => setShowEditModal(false)}>Cancel</Button>
+                <Button type="submit">Save Changes</Button>
+              </div>
             </form>
           </div>
         </div>

@@ -185,9 +185,23 @@ const DashboardLayout = ({ children }) => {
                 </div>
                 <div className="max-h-60 overflow-y-auto">
                   {searchResults.map((res, i) => (
-                    <div key={i} className="p-3 hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer border-b border-slate-100 dark:border-slate-800/50">
-                      <div className="font-semibold text-ccl-primary dark:text-white">{res.title}</div>
-                      <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">{res.type} &bull; {res.subtitle}</div>
+                    <div
+                      key={i}
+                      onMouseDown={(e) => {
+                        e.preventDefault();
+                        if (res.path) {
+                          navigate(res.path);
+                          setShowSearchResults(false);
+                          setSearchQuery('');
+                        }
+                      }}
+                      className="p-3 hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer border-b border-slate-100 dark:border-slate-800/50 transition-colors"
+                    >
+                      <div className="flex justify-between items-center">
+                        <div className="font-semibold text-ccl-primary dark:text-white">{res.title}</div>
+                        <span className="text-[9px] px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-bold text-slate-500">{res.type}</span>
+                      </div>
+                      <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">{res.subtitle}</div>
                     </div>
                   ))}
                 </div>

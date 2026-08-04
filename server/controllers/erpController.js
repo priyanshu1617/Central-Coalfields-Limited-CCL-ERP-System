@@ -775,43 +775,104 @@ export const createCircular = async (req, res, next) => {
 // ==========================================
 export const getDashboardStats = async (req, res, next) => {
   try {
-    // 1. Fetch counters
+    // Support date filtering via ?date=YYYY-MM-DD param, fallback to today
+    const targetDateStr = req.query.date;
+    const targetDate = targetDateStr ? new Date(targetDateStr) : new Date();
+    const targetDateString = targetDate.toDateString();
+
+    // 1. Fetch all collections
     const activeMines = await dbHelper.find(Mine, { status: 'Operational' });
+    const allMines = await dbHelper.find(Mine);
     const totalEquipment = await dbHelper.find(Equipment);
     const runningEquipment = totalEquipment.filter(e => e.status === 'Running');
     const employees = await dbHelper.find(Employee);
-    const presentAttendance = await dbHelper.find(Attendance, { status: 'Present' });
-    const safetyIncidents = await dbHelper.find(SafetyIncident, { status: { $ne: 'Resolved' } });
+    const safetyIncidents = await dbHelper.find(SafetyIncident);
+    const openIncidents = safetyIncidents.filter(i => i.status !== 'Resolved');
     const lowStockAlerts = await dbHelper.find(Inventory);
     const alertsCount = lowStockAlerts.filter(i => i.stockQuantity < i.reorderLevel).length;
-
-    // 2. Production stats (aggregate May 2025 logs)
     const production = await dbHelper.find(Production);
     const financeLogs = await dbHelper.find(Finance);
-    const totalDespatch = await dbHelper.find(Dispatch);
+    const dispatches = await dbHelper.find(Dispatch);
 
-    // Sum today's production (19 May 2025 as mock date)
-    const mockToday = new Date('2025-05-19').toDateString();
+    // 2. Today's production for selected date
     const todayProd = production
-      .filter(p => new Date(p.date).toDateString() === mockToday)
-      .reduce((acc, curr) => acc + curr.quantity, 0);
+      .filter(p => new Date(p.date).toDateString() === targetDateString)
+      .reduce((acc, curr) => acc + (curr.quantity || 0), 0);
 
+    // 3. Total revenue
     const totalRevenue = financeLogs
       .filter(f => f.type === 'Revenue')
-      .reduce((acc, curr) => acc + curr.amount, 0);
+      .reduce((acc, curr) => acc + (curr.amount || 0), 0);
+
+    // 4. Total despatch tonnage
+    const totalDespatch = dispatches.reduce((acc, curr) => acc + (curr.coalQuantity || 0), 0);
+
+    // 5. Build production trend for last 30 days
+    const trendDays = 30;
+    const trendData = [];
+    for (let i = trendDays - 1; i >= 0; i--) {
+      const d = new Date(targetDate);
+      d.setDate(d.getDate() - i);
+      const dStr = d.toDateString();
+      const dayTotal = production
+        .filter(p => new Date(p.date).toDateString() === dStr)
+        .reduce((acc, curr) => acc + (curr.quantity || 0), 0);
+      trendData.push({
+        day: `${d.getDate()} ${d.toLocaleString('default', { month: 'short' })}`,
+        output: dayTotal
+      });
+    }
+
+    // 6. Mine breakdown for pie chart (by total production per mine name)
+    const mineNameMap = {};
+    allMines.forEach(m => {
+      if (m._id) mineNameMap[m._id.toString()] = m.name;
+    });
+
+    const mineProductionMap = {};
+    production.forEach(p => {
+      let mineName = null;
+      if (p.mine && typeof p.mine === 'object' && p.mine.name) {
+        mineName = p.mine.name;
+      } else if (p.mine) {
+        const idStr = p.mine.toString();
+        mineName = mineNameMap[idStr] || (typeof p.mine === 'string' && !p.mine.match(/^[0-9a-fA-F]{24}$/) ? p.mine : null);
+      }
+      if (mineName) {
+        mineProductionMap[mineName] = (mineProductionMap[mineName] || 0) + (p.quantity || 0);
+      }
+    });
+
+    // Fallback to operational mines daily output if no production logs mapped yet
+    if (Object.keys(mineProductionMap).length === 0) {
+      allMines.forEach(m => {
+        mineProductionMap[m.name] = m.dailyOutput || 5000;
+      });
+    }
+
+    const totalProduced = Object.values(mineProductionMap).reduce((a, b) => a + b, 0) || 1;
+    const PIE_COLORS = ['#002D62', '#005bb7', '#0083ff', '#4da6ff', '#FF7F32', '#9333EA'];
+    const mineBreakdown = Object.entries(mineProductionMap).slice(0, 6).map(([name, qty], idx) => ({
+      name,
+      rawQty: qty,
+      value: parseFloat(((qty / totalProduced) * 100).toFixed(1)),
+      color: PIE_COLORS[idx % PIE_COLORS.length]
+    }));
 
     res.status(200).json({
       success: true,
       stats: {
-        coalProductionToday: todayProd || 28540,
-        manpowerPresent: employees.length || 4562,
-        equipmentRunning: runningEquipment.length || 342,
-        totalDespatch: totalDespatch.reduce((acc, curr) => acc + curr.coalQuantity, 0) || 24870,
-        safetyIncidentsThisMonth: safetyIncidents.length || 7,
-        activeMinesCount: activeMines.length || 5,
-        lowStockAlertsCount: alertsCount || 2,
-        totalRevenue: totalRevenue || 4500000
-      }
+        coalProductionToday: todayProd,
+        manpowerPresent: employees.length,
+        equipmentRunning: runningEquipment.length,
+        totalDespatch,
+        safetyIncidentsThisMonth: openIncidents.length,
+        activeMinesCount: activeMines.length,
+        lowStockAlertsCount: alertsCount,
+        totalRevenue
+      },
+      productionTrend: trendData,
+      mineBreakdown
     });
   } catch (error) {
     next(error);
@@ -838,10 +899,10 @@ export const globalSearch = async (req, res, next) => {
     res.status(200).json({
       success: true,
       results: [
-        ...matchedEmployees.map(e => ({ type: 'Employee', title: e.name, subtitle: `${e.employeeId} - ${e.designation}` })),
-        ...matchedMines.map(m => ({ type: 'Mine', title: m.name, subtitle: `${m.area} (${m.status})` })),
-        ...matchedEquipment.map(eq => ({ type: 'Equipment', title: eq.name, subtitle: `${eq.regNumber} (${eq.status})` })),
-        ...matchedInventory.map(i => ({ type: 'Inventory', title: i.name, subtitle: `${i.stockQuantity} ${i.unit} in stock` }))
+        ...matchedEmployees.map(e => ({ type: 'Employee', title: e.name, subtitle: `${e.employeeId} - ${e.designation}`, path: '/hr', id: e._id })),
+        ...matchedMines.map(m => ({ type: 'Mine', title: m.name, subtitle: `${m.area} (${m.status})`, path: '/mines', id: m._id })),
+        ...matchedEquipment.map(eq => ({ type: 'Equipment', title: eq.name, subtitle: `${eq.regNumber} (${eq.status})`, path: '/fleet', id: eq._id })),
+        ...matchedInventory.map(i => ({ type: 'Inventory', title: i.name, subtitle: `${i.stockQuantity} ${i.unit} in stock`, path: '/inventory', id: i._id }))
       ]
     });
   } catch (error) {
