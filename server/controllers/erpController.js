@@ -381,6 +381,46 @@ export const logProduction = async (req, res, next) => {
   }
 };
 
+export const updateProductionLog = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { mine, quantity, grade, date } = req.body;
+
+    const updateData = {};
+    if (mine) updateData.mine = mine;
+    if (quantity !== undefined) updateData.quantity = Number(quantity);
+    if (grade) updateData.grade = grade;
+    if (date) updateData.date = new Date(date);
+
+    const updated = await dbHelper.findByIdAndUpdate(Production, id, updateData);
+    if (!updated) {
+      return res.status(404).json({ success: false, message: 'Production log not found' });
+    }
+
+    if (mine && quantity !== undefined) {
+      await dbHelper.findByIdAndUpdate(Mine, mine, { dailyOutput: Number(quantity) });
+    }
+
+    const populated = await dbHelper.findById(Production, id, ['mine', 'supervisor']);
+    res.status(200).json({ success: true, data: populated || updated });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const deleteProductionLog = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const deleted = await dbHelper.findByIdAndDelete(Production, id);
+    if (!deleted) {
+      return res.status(404).json({ success: false, message: 'Production log not found' });
+    }
+    res.status(200).json({ success: true, data: deleted });
+  } catch (error) {
+    next(error);
+  }
+};
+
 // ==========================================
 // 6. EQUIPMENT CONTROLLERS
 // ==========================================
