@@ -22,6 +22,8 @@ import {
   updateMine,
   getProductionLogs,
   logProduction,
+  updateProductionLog,
+  deleteProductionLog,
   getEquipment,
   createEquipment,
   updateEquipment,
@@ -93,6 +95,8 @@ router.put('/mines/:id', authorize('Admin', 'Mine Manager'), updateMine);
 // Coal Production
 router.get('/production', getProductionLogs);
 router.post('/production', authorize('Admin', 'Mine Manager', 'Production Manager'), logProduction);
+router.put('/production/:id', authorize('Admin', 'Mine Manager', 'Production Manager'), updateProductionLog);
+router.delete('/production/:id', authorize('Admin', 'Mine Manager', 'Production Manager'), deleteProductionLog);
 
 // Fleet & Equipment
 router.get('/equipment', getEquipment);

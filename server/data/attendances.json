@@ -30,5 +30,25 @@
     "status": "Present",
     "createdAt": "2026-07-29T07:11:46.967Z",
     "updatedAt": "2026-07-29T07:11:46.967Z"
+  },
+  {
+    "_id": "632460277fff72d41fc2dd96",
+    "employee": "5ccb1105425ef0cc8d11acfa",
+    "date": "2026-08-04T18:30:00.000Z",
+    "checkIn": "12:18 PM",
+    "shift": "General",
+    "status": "Present",
+    "createdAt": "2026-08-05T06:48:58.831Z",
+    "updatedAt": "2026-08-05T06:48:58.831Z"
+  },
+  {
+    "_id": "88803c12dbcc407593b196b8",
+    "employee": "e18d60b540fe5128f76196fe",
+    "date": "2026-08-04T18:30:00.000Z",
+    "checkIn": "12:22 PM",
+    "shift": "General",
+    "status": "Present",
+    "createdAt": "2026-08-05T06:52:03.585Z",
+    "updatedAt": "2026-08-05T06:52:03.585Z"
   }
 ]

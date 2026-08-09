@@ -205,9 +205,9 @@
     "name": "Priyanshu Chandra",
     "email": "priyanshu@ccl.gov.in",
     "password": "$2a$10$p8DOjWj2UAtE/11zNLHUcOXzzu.XAizw4eRrtt2VDId3NpLm8HkYa",
-    "role": "HR",
+    "role": "Mine Manager",
     "employeeId": "ccl011",
-    "department": "Human Resources",
+    "department": "Mining Operations",
     "designation": "Human Resource",
     "baseSalary": 11200000,
     "timeline": [
@@ -218,7 +218,7 @@
       }
     ],
     "createdAt": "2026-07-27T15:19:29.623Z",
-    "updatedAt": "2026-07-27T15:19:29.623Z"
+    "updatedAt": "2026-08-05T06:46:51.997Z"
   },
   {
     "_id": "955ebbc19111024e2cb69032",
