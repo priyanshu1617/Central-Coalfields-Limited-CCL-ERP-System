@@ -292,7 +292,7 @@ const DashboardLayout = ({ children }) => {
         {/* FOOTER */}
         <footer className="py-4 px-6 border-t border-slate-200/50 dark:border-slate-800/30 text-xs text-slate-400 flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0">
           <span>&copy; {new Date().getFullYear()} Central Coalfields Limited (CCL). All rights reserved.</span>
-          <span className="font-semibold text-ccl-primary dark:text-white">Powered by CCL ERP System</span>
+          <span className="font-semibold text-ccl-primary dark:text-white">Powered by Priyanshu Chandra</span>
         </footer>
 
       </div>
