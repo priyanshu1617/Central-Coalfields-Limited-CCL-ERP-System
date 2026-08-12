@@ -47,7 +47,7 @@ const DashboardLayout = ({ children }) => {
     }
   };
 
-  const navItems = [
+  const navItemsBase = [
     { name: 'Dashboard', path: '/', icon: LayoutDashboard },
     { name: 'HR & Employee', path: '/hr', icon: Users },
     { name: 'Mine Management', path: '/mines', icon: Landmark },
@@ -62,6 +62,24 @@ const DashboardLayout = ({ children }) => {
     { name: 'Notices & Circulars', path: '/circulars', icon: HelpCircle },
     { name: 'Settings', path: '/settings', icon: Settings },
   ];
+
+  const getNavItems = () => {
+    const role = user?.role || 'Employee';
+    if (role === 'Admin') return navItemsBase;
+    
+    let allowedPaths = ['/', '/settings'];
+    if (role === 'HR') allowedPaths.push('/hr', '/attendance', '/circulars', '/reports');
+    if (role === 'Mine Manager') allowedPaths.push('/mines', '/production', '/fleet', '/procurement', '/safety', '/attendance', '/reports', '/circulars');
+    if (role === 'Production Manager') allowedPaths.push('/production', '/fleet', '/procurement', '/attendance', '/reports', '/circulars');
+    if (role === 'Finance Manager') allowedPaths.push('/finance', '/procurement', '/reports', '/circulars');
+    if (role === 'Inventory Manager') allowedPaths.push('/inventory', '/procurement', '/reports', '/circulars');
+    if (role === 'Safety Officer') allowedPaths.push('/safety', '/reports', '/circulars');
+    if (role === 'Employee') allowedPaths.push('/attendance', '/safety', '/circulars');
+
+    return navItemsBase.filter(item => allowedPaths.includes(item.path));
+  };
+
+  const navItems = getNavItems();
 
   // Helper to resolve page header
   const getPageHeader = () => {

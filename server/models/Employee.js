@@ -25,6 +25,7 @@ const employeeSchema = new mongoose.Schema({
     relation: { type: String, default: '' },
     phone: { type: String, default: '' }
   },
+  assignedMines: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Mine' }],
   documents: [
     {
       name: { type: String },

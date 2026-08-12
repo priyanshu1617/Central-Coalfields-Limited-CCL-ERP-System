@@ -16,6 +16,7 @@ import Leave from '../models/Leave.js';
 import Attendance from '../models/Attendance.js';
 import SafetyIncident from '../models/SafetyIncident.js';
 import Circular from '../models/Circular.js';
+import { buildRoleFilter } from '../utils/rbacFilters.js';
 
 // ==========================================
 // 1. AUTHENTICATION CONTROLLER
@@ -141,7 +142,9 @@ export const changePassword = async (req, res, next) => {
 // ==========================================
 export const getEmployees = async (req, res, next) => {
   try {
-    const employees = await dbHelper.find(Employee);
+    const filter = await buildRoleFilter(req.user, 'Employee');
+    if (filter === null || filter._id === null) return res.status(403).json({ success: false, message: 'Forbidden' });
+    const employees = await dbHelper.find(Employee, filter);
     res.status(200).json({ success: true, count: employees.length, data: employees });
   } catch (error) {
     next(error);
@@ -208,7 +211,9 @@ export const deleteEmployee = async (req, res, next) => {
 // ==========================================
 export const getAttendance = async (req, res, next) => {
   try {
-    const list = await dbHelper.find(Attendance, {}, ['employee']);
+    const filter = await buildRoleFilter(req.user, 'Attendance');
+    if (filter === null || filter._id === null) return res.status(403).json({ success: false, message: 'Forbidden' });
+    const list = await dbHelper.find(Attendance, filter, ['employee']);
     res.status(200).json({ success: true, count: list.length, data: list });
   } catch (error) {
     next(error);
@@ -280,7 +285,9 @@ export const checkOut = async (req, res, next) => {
 // ==========================================
 export const getLeaves = async (req, res, next) => {
   try {
-    const list = await dbHelper.find(Leave, {}, ['employee']);
+    const filter = await buildRoleFilter(req.user, 'Leave');
+    if (filter === null || filter._id === null) return res.status(403).json({ success: false, message: 'Forbidden' });
+    const list = await dbHelper.find(Leave, filter, ['employee']);
     res.status(200).json({ success: true, data: list });
   } catch (error) {
     next(error);
@@ -326,7 +333,9 @@ export const updateLeaveStatus = async (req, res, next) => {
 // ==========================================
 export const getMines = async (req, res, next) => {
   try {
-    const list = await dbHelper.find(Mine, {}, ['supervisor']);
+    const filter = await buildRoleFilter(req.user, 'Mine');
+    if (filter === null || filter._id === null) return res.status(403).json({ success: false, message: 'Forbidden' });
+    const list = await dbHelper.find(Mine, filter, ['supervisor']);
     res.status(200).json({ success: true, data: list });
   } catch (error) {
     next(error);
@@ -354,7 +363,9 @@ export const updateMine = async (req, res, next) => {
 
 export const getProductionLogs = async (req, res, next) => {
   try {
-    const logs = await dbHelper.find(Production, {}, ['mine', 'supervisor']);
+    const filter = await buildRoleFilter(req.user, 'Production');
+    if (filter === null || filter._id === null) return res.status(403).json({ success: false, message: 'Forbidden' });
+    const logs = await dbHelper.find(Production, filter, ['mine', 'supervisor']);
     res.status(200).json({ success: true, data: logs });
   } catch (error) {
     next(error);
@@ -426,7 +437,9 @@ export const deleteProductionLog = async (req, res, next) => {
 // ==========================================
 export const getEquipment = async (req, res, next) => {
   try {
-    const list = await dbHelper.find(Equipment, {}, ['assignedMine']);
+    const filter = await buildRoleFilter(req.user, 'Equipment');
+    if (filter === null || filter._id === null) return res.status(403).json({ success: false, message: 'Forbidden' });
+    const list = await dbHelper.find(Equipment, filter, ['assignedMine']);
     res.status(200).json({ success: true, data: list });
   } catch (error) {
     next(error);
@@ -457,7 +470,9 @@ export const updateEquipment = async (req, res, next) => {
 // ==========================================
 export const getVehicles = async (req, res, next) => {
   try {
-    const list = await dbHelper.find(Vehicle, {}, ['driver']);
+    const filter = await buildRoleFilter(req.user, 'Vehicle');
+    if (filter === null || filter._id === null) return res.status(403).json({ success: false, message: 'Forbidden' });
+    const list = await dbHelper.find(Vehicle, filter, ['driver']);
     res.status(200).json({ success: true, data: list });
   } catch (error) {
     next(error);
@@ -505,7 +520,9 @@ export const logFuel = async (req, res, next) => {
 // ==========================================
 export const getInventory = async (req, res, next) => {
   try {
-    const list = await dbHelper.find(Inventory, {}, ['supplier']);
+    const filter = await buildRoleFilter(req.user, 'Inventory');
+    if (filter === null || filter._id === null) return res.status(403).json({ success: false, message: 'Forbidden' });
+    const list = await dbHelper.find(Inventory, filter, ['supplier']);
     res.status(200).json({ success: true, data: list });
   } catch (error) {
     next(error);
@@ -543,7 +560,9 @@ export const deleteInventoryItem = async (req, res, next) => {
 
 export const getVendors = async (req, res, next) => {
   try {
-    const list = await dbHelper.find(Vendor);
+    const filter = await buildRoleFilter(req.user, 'Vendor');
+    if (filter === null || filter._id === null) return res.status(403).json({ success: false, message: 'Forbidden' });
+    const list = await dbHelper.find(Vendor, filter);
     res.status(200).json({ success: true, data: list });
   } catch (error) {
     next(error);
@@ -564,7 +583,9 @@ export const createVendor = async (req, res, next) => {
 // ==========================================
 export const getProcurements = async (req, res, next) => {
   try {
-    const list = await dbHelper.find(Procurement, {}, ['item', 'requestedBy', 'approvedBy', 'vendor']);
+    const filter = await buildRoleFilter(req.user, 'Procurement');
+    if (filter === null || filter._id === null) return res.status(403).json({ success: false, message: 'Forbidden' });
+    const list = await dbHelper.find(Procurement, filter, ['item', 'requestedBy', 'approvedBy', 'vendor']);
     res.status(200).json({ success: true, data: list });
   } catch (error) {
     next(error);
@@ -620,7 +641,9 @@ export const approveProcurement = async (req, res, next) => {
 // ==========================================
 export const getDispatches = async (req, res, next) => {
   try {
-    const list = await dbHelper.find(Dispatch);
+    const filter = await buildRoleFilter(req.user, 'Dispatch');
+    if (filter === null || filter._id === null) return res.status(403).json({ success: false, message: 'Forbidden' });
+    const list = await dbHelper.find(Dispatch, filter);
     res.status(200).json({ success: true, data: list });
   } catch (error) {
     next(error);
@@ -651,7 +674,9 @@ export const updateDispatch = async (req, res, next) => {
 // ==========================================
 export const getFinanceLogs = async (req, res, next) => {
   try {
-    const list = await dbHelper.find(Finance);
+    const filter = await buildRoleFilter(req.user, 'Finance');
+    if (filter === null || filter._id === null) return res.status(403).json({ success: false, message: 'Forbidden' });
+    const list = await dbHelper.find(Finance, filter);
     res.status(200).json({ success: true, data: list });
   } catch (error) {
     next(error);
@@ -746,7 +771,9 @@ export const generatePayslip = async (req, res, next) => {
 // ==========================================
 export const getSafetyIncidents = async (req, res, next) => {
   try {
-    const list = await dbHelper.find(SafetyIncident, {}, ['mine', 'reportedBy']);
+    const filter = await buildRoleFilter(req.user, 'SafetyIncident');
+    if (filter === null || filter._id === null) return res.status(403).json({ success: false, message: 'Forbidden' });
+    const list = await dbHelper.find(SafetyIncident, filter, ['mine', 'reportedBy']);
     res.status(200).json({ success: true, data: list });
   } catch (error) {
     next(error);
@@ -794,7 +821,9 @@ export const updateIncidentStatus = async (req, res, next) => {
 // ==========================================
 export const getCirculars = async (req, res, next) => {
   try {
-    const list = await dbHelper.find(Circular);
+    const filter = await buildRoleFilter(req.user, 'Circular');
+    if (filter === null || filter._id === null) return res.status(403).json({ success: false, message: 'Forbidden' });
+    const list = await dbHelper.find(Circular, filter);
     res.status(200).json({ success: true, data: list });
   } catch (error) {
     next(error);
@@ -820,19 +849,54 @@ export const getDashboardStats = async (req, res, next) => {
     const targetDate = targetDateStr ? new Date(targetDateStr) : new Date();
     const targetDateString = targetDate.toDateString();
 
+    const mineFilter = await buildRoleFilter(req.user, 'Mine');
+    const equipmentFilter = await buildRoleFilter(req.user, 'Equipment');
+    const employeeFilter = await buildRoleFilter(req.user, 'Employee');
+    const safetyFilter = await buildRoleFilter(req.user, 'SafetyIncident');
+    const inventoryFilter = await buildRoleFilter(req.user, 'Inventory');
+    const productionFilter = await buildRoleFilter(req.user, 'Production');
+    const financeFilter = await buildRoleFilter(req.user, 'Finance');
+    const dispatchFilter = await buildRoleFilter(req.user, 'Dispatch');
+    const leaveFilter = await buildRoleFilter(req.user, 'Leave');
+    const attendanceFilter = await buildRoleFilter(req.user, 'Attendance');
+    const circularFilter = await buildRoleFilter(req.user, 'Circular');
+
     // 1. Fetch all collections
-    const activeMines = await dbHelper.find(Mine, { status: 'Operational' });
-    const allMines = await dbHelper.find(Mine);
-    const totalEquipment = await dbHelper.find(Equipment);
+    const activeMines = await dbHelper.find(Mine, { status: 'Operational', ...mineFilter });
+    const allMines = await dbHelper.find(Mine, mineFilter);
+    const totalEquipment = await dbHelper.find(Equipment, equipmentFilter);
     const runningEquipment = totalEquipment.filter(e => e.status === 'Running');
-    const employees = await dbHelper.find(Employee);
-    const safetyIncidents = await dbHelper.find(SafetyIncident);
+    const employees = await dbHelper.find(Employee, employeeFilter);
+    const safetyIncidents = await dbHelper.find(SafetyIncident, safetyFilter);
     const openIncidents = safetyIncidents.filter(i => i.status !== 'Resolved');
-    const lowStockAlerts = await dbHelper.find(Inventory);
+    const lowStockAlerts = await dbHelper.find(Inventory, inventoryFilter);
     const alertsCount = lowStockAlerts.filter(i => i.stockQuantity < i.reorderLevel).length;
-    const production = await dbHelper.find(Production);
-    const financeLogs = await dbHelper.find(Finance);
-    const dispatches = await dbHelper.find(Dispatch);
+    const production = await dbHelper.find(Production, productionFilter);
+    const financeLogs = await dbHelper.find(Finance, financeFilter);
+    const dispatches = await dbHelper.find(Dispatch, dispatchFilter);
+    const leaves = await dbHelper.find(Leave, leaveFilter);
+    const attendances = await dbHelper.find(Attendance, attendanceFilter);
+    const circulars = await dbHelper.find(Circular, circularFilter);
+
+    // HR & Employee specific metrics
+    const leavesToday = leaves.filter(l => {
+      const start = new Date(l.startDate);
+      const end = new Date(l.endDate);
+      return targetDate >= start && targetDate <= end && l.status === 'Approved';
+    }).length;
+    
+    const pendingLeaves = leaves.filter(l => l.status === 'Pending').length;
+    const openNoticesCount = circulars.length;
+
+    const myAttendanceToday = attendances.find(a => 
+      (a.employee?._id?.toString() === req.user._id.toString() || a.employee?.toString() === req.user._id.toString()) && 
+      new Date(a.date).toDateString() === targetDateString
+    ) ? true : false;
+    
+    const myLeavesPending = leaves.filter(l => 
+      (l.employee?._id?.toString() === req.user._id.toString() || l.employee?.toString() === req.user._id.toString()) && 
+      l.status === 'Pending'
+    ).length;
 
     // 2. Today's production for selected date
     const todayProd = production
@@ -909,7 +973,12 @@ export const getDashboardStats = async (req, res, next) => {
         safetyIncidentsThisMonth: openIncidents.length,
         activeMinesCount: activeMines.length,
         lowStockAlertsCount: alertsCount,
-        totalRevenue
+        totalRevenue,
+        leavesToday,
+        pendingLeaves,
+        openNoticesCount,
+        myAttendanceToday,
+        myLeavesPending
       },
       productionTrend: trendData,
       mineBreakdown
@@ -926,10 +995,15 @@ export const globalSearch = async (req, res, next) => {
 
     const queryRegex = new RegExp(q, 'i');
 
-    const employees = await dbHelper.find(Employee);
-    const mines = await dbHelper.find(Mine);
-    const equipment = await dbHelper.find(Equipment);
-    const inventory = await dbHelper.find(Inventory);
+    const empFilter = await buildRoleFilter(req.user, 'Employee');
+    const mineFilter = await buildRoleFilter(req.user, 'Mine');
+    const eqFilter = await buildRoleFilter(req.user, 'Equipment');
+    const invFilter = await buildRoleFilter(req.user, 'Inventory');
+
+    const employees = await dbHelper.find(Employee, empFilter);
+    const mines = await dbHelper.find(Mine, mineFilter);
+    const equipment = await dbHelper.find(Equipment, eqFilter);
+    const inventory = await dbHelper.find(Inventory, invFilter);
 
     const matchedEmployees = employees.filter(e => queryRegex.test(e.name) || queryRegex.test(e.employeeId) || queryRegex.test(e.department));
     const matchedMines = mines.filter(m => queryRegex.test(m.name) || queryRegex.test(m.area));

@@ -134,7 +134,7 @@ router.post('/payroll/payslip', authorize('Admin', 'Finance Manager', 'HR', 'Emp
 
 // Safety Management
 router.get('/safety', getSafetyIncidents);
-router.post('/safety/report', authorize('Admin', 'Safety Officer', 'Mine Manager'), reportIncident);
+router.post('/safety/report', authorize('Admin', 'Safety Officer', 'Mine Manager', 'Employee'), reportIncident);
 router.put('/safety/:id/status', authorize('Admin', 'Safety Officer'), updateIncidentStatus);
 
 // Circulars & Notices

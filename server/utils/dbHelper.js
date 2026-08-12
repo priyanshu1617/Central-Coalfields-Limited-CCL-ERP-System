@@ -47,13 +47,35 @@ const dbHelper = {
     // Apply filtering
     if (Object.keys(query).length > 0) {
       items = items.filter(item => {
+        // Special case for $or operator at root
+        if (query.$or) {
+          const matchOr = query.$or.some(orCondition => {
+            return Object.keys(orCondition).every(key => item[key] === orCondition[key] || (item[key]?._id && item[key]._id === orCondition[key]));
+          });
+          if (!matchOr) return false;
+        }
+
         for (const key in query) {
-          if (query[key] !== undefined && item[key] !== query[key]) {
-            // Support simple array check
-            if (Array.isArray(item[key]) && item[key].includes(query[key])) {
-              continue;
+          if (key === '$or') continue;
+          
+          if (query[key] !== undefined) {
+            const queryValue = query[key];
+            
+            // Support $in operator
+            if (queryValue && typeof queryValue === 'object' && queryValue.$in) {
+               const itemValueId = item[key]?._id || item[key];
+               if (!queryValue.$in.includes(itemValueId)) return false;
+               continue;
             }
-            return false;
+
+            // Simple equality check (handle populated _id comparison)
+            const itemValue = item[key]?._id || item[key];
+            if (itemValue !== queryValue) {
+              if (Array.isArray(item[key]) && item[key].includes(queryValue)) {
+                continue;
+              }
+              return false;
+            }
           }
         }
         return true;

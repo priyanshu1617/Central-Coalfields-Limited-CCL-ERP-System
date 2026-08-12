@@ -59,48 +59,56 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [showDatePicker, setShowDatePicker] = useState(false);
 
+  const role = user?.role || 'Employee';
+  const isHR = role === 'HR';
+  const isEmployee = role === 'Employee';
+  const isOperational = !isHR && !isEmployee;
+
   // ── fetch data for selected date ──────────────────────────
   const fetchDashboardData = useCallback(async (date) => {
     setLoading(true);
-    try {
-      const dateStr = toISO(date || selectedDate);
-      const [statsRes, minesRes, prodRes] = await Promise.all([
-        api.get(`/dashboard/stats?date=${dateStr}`),
-        api.get('/mines'),
-        api.get('/production'),
-      ]);
+    const dateStr = toISO(date || selectedDate);
+    const currentRole = user?.role || 'Employee';
+    const isOperationalRole = !['HR', 'Employee'].includes(currentRole);
 
+    // Step 1: Always fetch dashboard stats (safe for all roles, RBAC handled server-side)
+    try {
+      const statsRes = await api.get(`/dashboard/stats?date=${dateStr}`);
       if (statsRes.data.success) {
         setStats(statsRes.data.stats);
-        if (statsRes.data.productionTrend?.length > 0) {
-          setProductionTrend(statsRes.data.productionTrend);
-        }
-        if (statsRes.data.mineBreakdown?.length > 0) {
-          setMineBreakdown(statsRes.data.mineBreakdown);
-        }
-      }
-      if (minesRes.data.success) {
-        setMines(minesRes.data.data.slice(0, 5));
-      }
-      if (prodRes.data.success) {
-        // Show 4 most recent production logs
-        const sorted = [...prodRes.data.data].sort(
-          (a, b) => new Date(b.date) - new Date(a.date)
-        );
-        setRecentProduction(sorted.slice(0, 4));
+        if (statsRes.data.productionTrend?.length > 0) setProductionTrend(statsRes.data.productionTrend);
+        if (statsRes.data.mineBreakdown?.length > 0) setMineBreakdown(statsRes.data.mineBreakdown);
       }
     } catch (err) {
-      console.warn('Backend unavailable — showing placeholder data.');
+      console.warn('Dashboard stats unavailable:', err?.response?.status, err.message);
       setStats({
         coalProductionToday: 0, manpowerPresent: 0, equipmentRunning: 0,
         totalDespatch: 0, safetyIncidentsThisMonth: 0, activeMinesCount: 0,
         lowStockAlertsCount: 0, totalRevenue: 0,
+        leavesToday: 0, pendingLeaves: 0, openNoticesCount: 0,
+        myAttendanceToday: false, myLeavesPending: 0,
       });
-      setMines([]);
-      setProductionTrend([]);
     }
+
+    // Step 2: Only fetch mines & production for operational roles
+    // HR and Employee get 403 on these endpoints, so skip them entirely
+    if (isOperationalRole) {
+      try {
+        const minesRes = await api.get('/mines');
+        if (minesRes.data.success) setMines(minesRes.data.data.slice(0, 5));
+      } catch { /* forbidden for this role — ignore */ }
+
+      try {
+        const prodRes = await api.get('/production');
+        if (prodRes.data.success) {
+          const sorted = [...prodRes.data.data].sort((a, b) => new Date(b.date) - new Date(a.date));
+          setRecentProduction(sorted.slice(0, 4));
+        }
+      } catch { /* forbidden for this role — ignore */ }
+    }
+
     setLoading(false);
-  }, [selectedDate]);
+  }, [selectedDate, user?.role]);
 
   useEffect(() => {
     fetchDashboardData(selectedDate);
@@ -144,15 +152,30 @@ const Dashboard = () => {
     if (pct >= 70) return 'bg-orange-100 text-orange-800 dark:bg-orange-950 dark:text-orange-200';
     return 'bg-red-100 text-red-800 dark:bg-red-950 dark:text-red-200';
   };
-
   // ── metric cards config ───────────────────────────────────
-  const metricCards = [
-    { label: 'Coal Production',   key: 'coalProductionToday', unit: 'Tonnes Today',        icon: Flame,         border: 'border-l-ccl-primary', bg: 'bg-blue-50 dark:bg-blue-950',   text: 'text-ccl-primary dark:text-blue-300' },
-    { label: 'Total Employees',   key: 'manpowerPresent',     unit: 'Registered',           icon: Users,         border: 'border-l-green-500',    bg: 'bg-green-50 dark:bg-green-950', text: 'text-green-600 dark:text-green-300' },
-    { label: 'Equipment Running', key: 'equipmentRunning',    unit: 'Active Units',         icon: Wrench,        border: 'border-l-ccl-accent',   bg: 'bg-orange-50 dark:bg-orange-950', text: 'text-ccl-accent dark:text-orange-300' },
-    { label: 'Total Despatch',    key: 'totalDespatch',       unit: 'Tonnes Despatched',    icon: Truck,         border: 'border-l-purple-500',   bg: 'bg-purple-50 dark:bg-purple-950', text: 'text-purple-500 dark:text-purple-300' },
-    { label: 'Open Incidents',    key: 'safetyIncidentsThisMonth', unit: 'Unresolved',     icon: AlertTriangle, border: 'border-l-red-500',      bg: 'bg-red-50 dark:bg-red-950',     text: 'text-red-500 dark:text-red-300' },
-  ];
+  let metricCards = [];
+  if (isHR) {
+    metricCards = [
+      { label: 'Total Employees',   key: 'manpowerPresent',  unit: 'Registered', icon: Users, border: 'border-l-green-500', bg: 'bg-green-50 dark:bg-green-950', text: 'text-green-600 dark:text-green-300' },
+      { label: 'On Leave Today',    key: 'leavesToday',      unit: 'Employees',  icon: Calendar, border: 'border-l-orange-500', bg: 'bg-orange-50 dark:bg-orange-950', text: 'text-orange-500 dark:text-orange-300' },
+      { label: 'Pending Leaves',    key: 'pendingLeaves',    unit: 'Requests',   icon: Clock, border: 'border-l-purple-500', bg: 'bg-purple-50 dark:bg-purple-950', text: 'text-purple-500 dark:text-purple-300' },
+      { label: 'Active Notices',    key: 'openNoticesCount', unit: 'Circulars',  icon: Info, border: 'border-l-blue-500', bg: 'bg-blue-50 dark:bg-blue-950', text: 'text-blue-500 dark:text-blue-300' },
+    ];
+  } else if (isEmployee) {
+    metricCards = [
+      { label: 'My Attendance',     key: 'myAttendanceToday', unit: 'Today',     icon: CheckCircle, border: 'border-l-green-500', bg: 'bg-green-50 dark:bg-green-950', text: 'text-green-600 dark:text-green-300', format: v => v ? 'Present' : 'Not Marked' },
+      { label: 'My Pending Leaves', key: 'myLeavesPending',   unit: 'Requests',  icon: Clock, border: 'border-l-orange-500', bg: 'bg-orange-50 dark:bg-orange-950', text: 'text-orange-500 dark:text-orange-300' },
+      { label: 'Company Notices',   key: 'openNoticesCount',  unit: 'Circulars', icon: Info, border: 'border-l-blue-500', bg: 'bg-blue-50 dark:bg-blue-950', text: 'text-blue-500 dark:text-blue-300' },
+    ];
+  } else {
+    metricCards = [
+      { label: 'Coal Production',   key: 'coalProductionToday', unit: 'Tonnes Today',        icon: Flame,         border: 'border-l-ccl-primary', bg: 'bg-blue-50 dark:bg-blue-950',   text: 'text-ccl-primary dark:text-blue-300' },
+      { label: 'Total Employees',   key: 'manpowerPresent',     unit: 'Registered',           icon: Users,         border: 'border-l-green-500',    bg: 'bg-green-50 dark:bg-green-950', text: 'text-green-600 dark:text-green-300' },
+      { label: 'Equipment Running', key: 'equipmentRunning',    unit: 'Active Units',         icon: Wrench,        border: 'border-l-ccl-accent',   bg: 'bg-orange-50 dark:bg-orange-950', text: 'text-ccl-accent dark:text-orange-300' },
+      { label: 'Total Despatch',    key: 'totalDespatch',       unit: 'Tonnes Despatched',    icon: Truck,         border: 'border-l-purple-500',   bg: 'bg-purple-50 dark:bg-purple-950', text: 'text-purple-500 dark:text-purple-300' },
+      { label: 'Open Incidents',    key: 'safetyIncidentsThisMonth', unit: 'Unresolved',     icon: AlertTriangle, border: 'border-l-red-500',      bg: 'bg-red-50 dark:bg-red-950',     text: 'text-red-500 dark:text-red-300' },
+    ];
+  }
 
   const isToday = toISO(selectedDate) === toISO(new Date());
 
@@ -239,9 +262,9 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* ── 5 METRIC WIDGETS ── */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-        {metricCards.map(({ label, key, unit, icon: Icon, border, bg, text }) => (
+      {/* ── METRIC WIDGETS ── */}
+      <div className={`grid grid-cols-1 sm:grid-cols-2 ${metricCards.length === 3 ? 'lg:grid-cols-3' : (metricCards.length === 4 ? 'lg:grid-cols-4' : 'lg:grid-cols-5')} gap-4`}>
+        {metricCards.map(({ label, key, unit, icon: Icon, border, bg, text, format }) => (
           <Card key={key} className={`border-l-4 ${border} flex flex-col justify-between`} hoverEffect>
             <div className="flex items-center justify-between">
               <span className="text-[10px] uppercase font-bold text-slate-400">{label}</span>
@@ -254,7 +277,7 @@ const Dashboard = () => {
                 <div className="h-7 w-20 bg-slate-200 dark:bg-slate-700 rounded animate-pulse" />
               ) : (
                 <div className="text-2xl font-extrabold">
-                  {stats ? fmt(stats[key]) : '—'}
+                  {stats ? (format ? format(stats[key]) : fmt(stats[key])) : '—'}
                 </div>
               )}
               <p className="text-[10px] text-slate-400 mt-0.5">{unit}</p>
@@ -264,7 +287,8 @@ const Dashboard = () => {
       </div>
 
       {/* ── CHARTS ── */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      {isOperational && (
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
         {/* Area Chart — Production Trend */}
         <Card className="lg:col-span-2">
@@ -377,6 +401,7 @@ const Dashboard = () => {
           )}
         </Card>
       </div>
+      )}
 
       {/* ── QUICK ACCESS ── */}
       <Card>
@@ -402,8 +427,9 @@ const Dashboard = () => {
         </div>
       </Card>
 
-      {/* ── BOTTOM 3-COLUMN ── */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {/* ── BOTTOM SECTIONS ── */}
+      {isOperational ? (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
         {/* Recent Production Logs */}
         <Card className="flex flex-col">
@@ -544,7 +570,48 @@ const Dashboard = () => {
           </p>
         </Card>
 
-      </div>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 gap-6">
+          {/* Alerts for non-operational roles */}
+          <Card className="flex flex-col">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="font-bold text-sm">Alerts & Notifications</h2>
+              <span
+                className="text-[10px] text-blue-500 font-bold hover:underline cursor-pointer"
+                onClick={() => navigate('/circulars')}
+              >
+                View All
+              </span>
+            </div>
+
+            <div className="space-y-3 flex-1">
+              {notifications.length === 0 ? (
+                <div className="text-center text-slate-400 text-xs py-4">No alerts.</div>
+              ) : (
+                notifications.slice(0, 4).map((notif, i) => {
+                  let alertColor = 'text-blue-500 bg-blue-50 dark:bg-blue-950/20 border-blue-100';
+                  if (notif.type === 'warning')     alertColor = 'text-red-500 bg-red-50 dark:bg-red-950/20 border-red-100';
+                  if (notif.type === 'maintenance') alertColor = 'text-orange-500 bg-orange-50 dark:bg-orange-950/20 border-orange-100';
+                  return (
+                    <div key={i} className={`p-2.5 border rounded-xl flex items-start space-x-2.5 text-xs ${alertColor}`}>
+                      <AlertTriangle size={14} className="shrink-0 mt-0.5" />
+                      <div className="flex-1 min-w-0">
+                        <p className="font-semibold truncate text-slate-800 dark:text-slate-200">{notif.message}</p>
+                        <span className="text-[9px] text-slate-400 block mt-0.5">{notif.time}</span>
+                      </div>
+                    </div>
+                  );
+                })
+              )}
+            </div>
+          </Card>
+        </div>
+      )}
+
+      {isOperational && (
+        <div style={{ display: 'none' }} />
+      )}
     </div>
   );
 };
