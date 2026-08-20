@@ -14,7 +14,9 @@ const getFilePath = (collectionName) => {
 const readJson = (collectionName) => {
   const filePath = getFilePath(collectionName);
   if (!fs.existsSync(filePath)) {
-    fs.writeFileSync(filePath, JSON.stringify([], null, 2));
+    if (!process.env.VERCEL) {
+      fs.writeFileSync(filePath, JSON.stringify([], null, 2));
+    }
     return [];
   }
   try {
@@ -27,6 +29,7 @@ const readJson = (collectionName) => {
 };
 
 const writeJson = (collectionName, data) => {
+  if (process.env.VERCEL) return;
   const filePath = getFilePath(collectionName);
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
 };

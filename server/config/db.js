@@ -33,7 +33,7 @@ export const connectDB = async () => {
       connectTimeoutMS: 10000,           // Initial connection timeout
       maxPoolSize: 10,                   // Max concurrent connections
       retryWrites: true,
-      family: 4,                         // Force IPv4 — fixes most ECONNREFUSED issues on Windows
+      ...(process.env.VERCEL ? {} : { family: 4 }), // Force IPv4 locally, but allow IPv6 on Vercel
     });
 
     console.log('✅ MongoDB Atlas connected successfully!');
