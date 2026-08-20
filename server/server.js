@@ -30,6 +30,15 @@ app.use(cors({
 // Logger Middleware
 app.use(morgan('dev'));
 
+// Vercel already parses the body into req.body. 
+// We must tell express.json() to skip parsing if it's already there.
+app.use((req, res, next) => {
+  if (req.body && Object.keys(req.body).length > 0) {
+    req._body = true; 
+  }
+  next();
+});
+
 // Body Parsers
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
