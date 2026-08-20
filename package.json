@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "Root orchestration for CCL ERP",
   "scripts": {
-    "install:all": "npm install && npm install --prefix client && npm install --prefix server",
-    "postinstall": "npm install --prefix client --legacy-peer-deps && npm install --prefix server",
+    "install:all": "npm install && cd client && npm install --legacy-peer-deps && cd ../server && npm install",
+    "vercel-build": "npm run install:all && cd client && npm run build",
     "dev": "concurrently \"npm run dev --prefix client\" \"npm run dev --prefix server\"",
     "start": "concurrently \"npm run start --prefix client\" \"npm start --prefix server\"",
-    "build": "npm run build --prefix client"
+    "build": "cd client && npm run build"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
