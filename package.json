@@ -7,7 +7,7 @@
     "vercel-build": "npm run install:all && cd client && npm run build",
     "dev": "concurrently \"npm run dev --prefix client\" \"npm run dev --prefix server\"",
     "start": "concurrently \"npm run start --prefix client\" \"npm start --prefix server\"",
-    "build": "cd client && npm run build"
+    "build": "npm run install:all && cd client && npm run build"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
