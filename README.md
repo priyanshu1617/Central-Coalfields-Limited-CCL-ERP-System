@@ -2,6 +2,8 @@
 
 Build a full-stack, production-quality Enterprise Resource Planning (ERP) web application inspired by Central Coalfields Limited (CCL), a subsidiary of Coal India Limited. The system manages mine status, coal extraction logging, fleet vehicles, store catalog levels, purchases approvals, accounts bookkeeping, and HR payroll, following an enterprise-grade responsive layout matching industrial software interfaces.
 
+**🔗 Live Demo:** [central-coalfields-limited-ccl-erp-seven.vercel.app](https://central-coalfields-limited-ccl-erp-seven.vercel.app/)
+
 ---
 
 ## 🚀 Key Features
