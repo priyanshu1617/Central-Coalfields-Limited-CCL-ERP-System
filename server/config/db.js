@@ -27,7 +27,7 @@ export const connectDB = async () => {
     console.log('🔌 Connecting to MongoDB Atlas...');
 
     await mongoose.connect(mongoURI, {
-      // Modern Mongoose 8.x options (no deprecated flags needed)
+      dbName: 'ccl_erp',                 // Force the ccl_erp database
       serverSelectionTimeoutMS: 10000,   // Fail fast after 10s if Atlas is unreachable
       socketTimeoutMS: 45000,            // Close sockets after 45s of inactivity
       connectTimeoutMS: 10000,           // Initial connection timeout
