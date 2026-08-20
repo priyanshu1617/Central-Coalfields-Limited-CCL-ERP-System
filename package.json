@@ -2,6 +2,7 @@
   "name": "ccl-erp-root",
   "version": "1.0.0",
   "description": "Root orchestration for CCL ERP",
+  "type": "module",
   "scripts": {
     "install:all": "npm install && cd client && npm install --legacy-peer-deps && cd ../server && npm install",
     "vercel-build": "npm run install:all && cd client && npm run build",
