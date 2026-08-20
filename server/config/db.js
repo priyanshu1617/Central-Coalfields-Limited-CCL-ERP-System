@@ -10,7 +10,7 @@ let isMockDB = false;
 // Mock data directory sits at /server/data/
 const mockDataDir = path.resolve(__dirname, '..', 'data');
 
-if (!fs.existsSync(mockDataDir)) {
+if (!process.env.VERCEL && !fs.existsSync(mockDataDir)) {
   fs.mkdirSync(mockDataDir, { recursive: true });
 }
 

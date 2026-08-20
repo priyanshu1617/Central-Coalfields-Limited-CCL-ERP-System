@@ -36,7 +36,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Serve Uploads Directory static assets
 const uploadsDir = path.resolve('uploads');
-if (!fs.existsSync(uploadsDir)) {
+if (!process.env.VERCEL && !fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir, { recursive: true });
 }
 app.use('/uploads', express.static(uploadsDir));
@@ -82,10 +82,14 @@ const startServer = async () => {
     console.error('Self-seed checking error:', error);
   }
 
-  app.listen(PORT, () => {
-    console.log(`🚀 CCL ERP Backend Server running on http://localhost:${PORT}`);
-  });
+  if (!process.env.VERCEL) {
+    app.listen(PORT, () => {
+      console.log(`🚀 CCL ERP Backend Server running on http://localhost:${PORT}`);
+    });
+  }
 };
 
-startServer();
+if (!process.env.VERCEL) {
+  startServer();
+}
 export default app;
