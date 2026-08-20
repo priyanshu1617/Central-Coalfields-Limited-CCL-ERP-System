@@ -2,7 +2,8 @@ import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
 
-const uploadDir = path.resolve('uploads');
+// Vercel Serverless Functions have read-only file systems except for /tmp
+const uploadDir = process.env.VERCEL ? '/tmp/uploads' : path.resolve('uploads');
 
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
